@@ -240,7 +240,8 @@
 
   el.close.addEventListener('click', close);
   overlay.addEventListener('click', (event) => {
-    if (event.target === overlay && !current) close();
+    if (event.target !== overlay) return;
+    if (!current || completed || Date.now() >= expiredAt) close();
   });
   el.check.addEventListener('click', () => checkStatus(true));
 

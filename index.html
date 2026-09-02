@@ -1029,7 +1029,7 @@ footer{
   nav{
     display:none;
     position:absolute;
-    top:72px;
+    top:calc(100% + 10px);
     left:4%;
     right:4%;
     padding:15px;
@@ -1040,7 +1040,8 @@ footer{
     -webkit-backdrop-filter:blur(18px);
     border:1px solid var(--line);
     border-radius:18px;
-    box-shadow:var(--shadow)
+    box-shadow:var(--shadow);
+    z-index:1000
   }
 
   nav.open{
@@ -1052,7 +1053,11 @@ footer{
   }
 
   .menu{
-    display:block
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    z-index:1001
   }
 
   .products{
@@ -1164,6 +1169,15 @@ footer{
     gap:8px
   }
 
+}
+
+
+/* ================= MOBILE NAV FINAL FIX ================= */
+@media(max-width:850px){
+  header#header .nav{position:relative;}
+  header#header #nav{display:none;position:absolute;top:calc(100% + 10px);left:0;right:0;width:100%;z-index:5000;}
+  header#header #nav.open{display:flex;}
+  header#header #menu{display:flex;align-items:center;justify-content:center;z-index:5001;}
 }
 
 </style>
@@ -2428,63 +2442,81 @@ footer{
    ========================================================= */
 
 const products = [
+
   {
     icon:"fa-code",
     name:"Jasa Developer",
     description:"Layanan developer SA:MP dan kebutuhan pengembangan server. Hubungi kami untuk melihat detail layanan dan melakukan pemesanan.",
     price:5000,
+    displayPrice:"START Rp 5.000",
     href:"https://discord.gg/GRkGwWE4C5"
   },
+
   {
     icon:"fa-gamepad",
     name:"Jasa Review",
     description:"Layanan review dan publikasi untuk membantu memperkenalkan server SA:MP kepada komunitas.",
     price:10000,
+    displayPrice:"START Rp 10.000",
     href:"https://discord.gg/GRkGwWE4C5"
   },
+
   {
     icon:"fa-server",
     name:"Server & Hosting",
     description:"Layanan server, hosting, dan kebutuhan project digital untuk berbagai kebutuhan.",
     price:20000,
+    displayPrice:"START Rp 20.000",
     href:"products/samphosting.html"
   },
+
   {
     icon:"fa-palette",
     name:"Design & UI",
     description:"Layanan desain logo, banner, UI, dan berbagai kebutuhan visual untuk project digital.",
     price:5000,
+    displayPrice:"START Rp 5.000",
     href:"https://discord.gg/GRkGwWE4C5"
   },
+
   {
     icon:"fa-bolt",
     name:"Server Pack",
     description:"Paket untuk membantu kamu membangun server dari awal dengan kebutuhan yang disesuaikan dengan project.",
     price:30000,
+    displayPrice:"START Rp 30.000",
     href:"products/serverpack.html"
   },
+
   {
     icon:"fa-server",
     name:"Open-MP",
     description:"Layanan dan kebutuhan server Open-MP untuk kamu yang ingin membangun atau mengembangkan project multiplayer.",
     price:20000,
+    displayPrice:"START Rp 20.000",
     href:"products/open-mp.html"
   },
+
+  {
+    icon:"fa-vial",
+    name:"Produk Tes",
+    description:"Produk Rp10 khusus untuk menguji alur pembayaran QRIS otomatis FrogzzShop.",
+    price:10,
+    displayPrice:"Rp 10",
+    href:"https://discord.gg/GRkGwWE4C5",
+    test:true
+  },
+
   {
     icon:"fa-box-open",
-    name:"Produk Tes",
-    description:"Produk khusus untuk menguji alur pembayaran QRIS otomatis FrogzzShop.",
-    price:10,
-    href:"https://discord.gg/GRkGwWE4C5"
-  },
-  {
-    icon:"fa-headset",
     name:"Custom Request",
-    description:"Punya kebutuhan khusus? Hubungi admin untuk menentukan harga sebelum order.",
+    description:"Punya kebutuhan khusus? Kirim request dan diskusikan kebutuhanmu bersama admin FrogzzShop.",
     price:null,
+    displayPrice:"Request",
     href:"https://discord.gg/GRkGwWE4C5",
     direct:true
   }
+
 ]
 
 
@@ -2540,7 +2572,7 @@ list.innerHTML = products.map((p)=>`
 
       <div class="price">
         <span>
-          ${p.price ? `Rp${new Intl.NumberFormat("id-ID").format(p.price)}` : "Request"}
+          ${p.displayPrice || (p.price != null ? `Rp${new Intl.NumberFormat("id-ID").format(p.price)}` : "Request")}
         </span>
       </div>
 
@@ -2620,49 +2652,53 @@ window.addEventListener(
    MOBILE MENU
    ========================================================= */
 
-const menu =
-  document.getElementById("menu");
+const menu = document.getElementById("menu");
+const nav = document.getElementById("nav");
+const menuIcon = menu?.querySelector("i");
 
-
-const nav =
-  document.getElementById("nav");
-
-
-menu.addEventListener(
-  "click",
-  ()=>{
-
-    const open =
-      nav.classList.toggle("open");
-
-    menu.setAttribute(
-      "aria-expanded",
-      open
-    );
-
+function closeMobileMenu(){
+  nav.classList.remove("open");
+  menu.setAttribute("aria-expanded", "false");
+  menu.setAttribute("aria-label", "Buka menu");
+  if (menuIcon) {
+    menuIcon.classList.remove("fa-xmark");
+    menuIcon.classList.add("fa-bars");
   }
-);
+}
 
-
-nav.querySelectorAll("a").forEach(
-  a=>{
-
-    a.addEventListener(
-      "click",
-      ()=>{
-
-        nav.classList.remove("open");
-
-        menu.setAttribute(
-          "aria-expanded",
-          "false"
-        );
-
-      }
-    );
-
+function toggleMobileMenu(){
+  const open = !nav.classList.contains("open");
+  if (open) {
+    nav.classList.add("open");
+    menu.setAttribute("aria-expanded", "true");
+    menu.setAttribute("aria-label", "Tutup menu");
+    if (menuIcon) {
+      menuIcon.classList.remove("fa-bars");
+      menuIcon.classList.add("fa-xmark");
+    }
+  } else {
+    closeMobileMenu();
   }
-);
+}
+
+menu.addEventListener("click", toggleMobileMenu);
+
+nav.querySelectorAll("a").forEach((a)=>{
+  a.addEventListener("click", closeMobileMenu);
+});
+
+document.addEventListener("click", (event)=>{
+  if (!nav.classList.contains("open")) return;
+  if (!nav.contains(event.target) && !menu.contains(event.target)) closeMobileMenu();
+});
+
+document.addEventListener("keydown", (event)=>{
+  if (event.key === "Escape") closeMobileMenu();
+});
+
+window.addEventListener("resize", ()=>{
+  if (window.innerWidth > 850) closeMobileMenu();
+});
 
 
 /* =========================================================
@@ -2703,10 +2739,9 @@ document
 
   });
 
-
-
-
+</script>
 
 <script src="payment.js"></script>
+
 </body>
 </html>
