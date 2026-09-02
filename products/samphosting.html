@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Arvalon Cloud — SA:MP Hosting Indonesia dengan resource untuk server kecil hingga besar.">
+<title>Arvalon Cloud — SA:MP Hosting</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root{
+  --purple:#7657ff;
+  --purple2:#9b7cff;
+  --soft:#f4f1ff;
+  --ink:#17151f;
+  --muted:#777382;
+  --line:#ebe9f2;
+  --white:#fff;
+  --shadow:0 20px 55px rgba(91,70,180,.10);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:#fff;
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.container{
+  width:min(1120px,92%);
+  margin:auto;
+}
+
+/* ================= HEADER ================= */
+
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:50;
+  padding:15px 0;
+  transition:.3s;
+}
+
+header.scrolled{
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  font-size:19px;
+  letter-spacing:-.7px;
+}
+
+.brand-icon{
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  color:#fff;
+  background:linear-gradient(135deg,var(--purple),var(--purple2));
+  box-shadow:0 10px 25px rgba(118,87,255,.25);
+}
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:27px;
+}
+
+nav a{
+  color:#625e6c;
+  font-size:14px;
+  font-weight:650;
+  transition:.2s;
+}
+
+nav a:hover{
+  color:var(--purple);
+}
+
+.nav-button{
+  color:#fff!important;
+  background:var(--ink);
+  padding:11px 17px;
+  border-radius:12px;
+}
+
+.menu{
+  display:none;
+  width:42px;
+  height:42px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  padding:160px 0 80px;
+  text-align:center;
+}
+
+.hero-content{
+  max-width:820px;
+  margin:auto;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border:1px solid #e3ddff;
+  border-radius:999px;
+  background:#fff;
+  color:#6849e8;
+  font-size:12px;
+  font-weight:850;
+}
+
+.badge-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--purple);
+  box-shadow:0 0 0 5px #eeeaff;
+}
+
+.hero h1{
+  margin-top:22px;
+  font-size:clamp(44px,7vw,74px);
+  line-height:1;
+  letter-spacing:-4px;
+  font-weight:950;
+}
+
+.gradient{
+  background:linear-gradient(
+    120deg,
+    #191720 15%,
+    #7657ff 65%,
+    #a084ff
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  max-width:650px;
+  margin:24px auto 0;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.8;
+}
+
+.hero-buttons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:28px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:13px 18px;
+  border-radius:13px;
+  font-size:13px;
+  font-weight:850;
+  transition:.25s;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+}
+
+.btn-primary{
+  color:#fff;
+  background:linear-gradient(135deg,var(--purple),var(--purple2));
+  box-shadow:0 14px 30px rgba(118,87,255,.22);
+}
+
+.btn-light{
+  background:#fff;
+  border:1px solid var(--line);
+}
+
+/* ================= SECTION ================= */
+
+section{
+  padding:80px 0;
+}
+
+.section-head{
+  margin-bottom:32px;
+}
+
+.eyebrow{
+  color:var(--purple);
+  font-size:11px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:1.7px;
+  margin-bottom:9px;
+}
+
+.section-head h2{
+  font-size:clamp(30px,5vw,43px);
+  letter-spacing:-2px;
+}
+
+.section-head p{
+  max-width:680px;
+  margin-top:10px;
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+}
+
+/* ================= PLANS ================= */
+
+.plans{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.plan{
+  position:relative;
+  padding:25px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:#fff;
+  transition:.3s;
+}
+
+.plan:hover{
+  transform:translateY(-5px);
+  border-color:#dcd5ff;
+  box-shadow:var(--shadow);
+}
+
+.plan-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:15px;
+}
+
+.plan-code{
+  font-size:11px;
+  font-weight:900;
+  color:var(--purple);
+  letter-spacing:.7px;
+}
+
+.plan h3{
+  margin-top:6px;
+  font-size:20px;
+}
+
+.plan-price{
+  margin-top:22px;
+  display:flex;
+  align-items:baseline;
+  gap:5px;
+}
+
+.plan-price strong{
+  font-size:28px;
+  letter-spacing:-1px;
+}
+
+.plan-price span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.specs{
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  display:grid;
+  gap:11px;
+}
+
+.spec{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  font-size:12px;
+}
+
+.spec-label{
+  color:var(--muted);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.spec-label i{
+  width:17px;
+  color:var(--purple);
+  text-align:center;
+}
+
+.spec-value{
+  font-weight:800;
+  text-align:right;
+}
+
+.plan-order{
+  margin-top:23px;
+  width:100%;
+  color:#fff;
+  background:var(--ink);
+  padding:12px;
+  border-radius:12px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:850;
+  transition:.2s;
+}
+
+.plan-order:hover{
+  background:var(--purple);
+}
+
+/* ================= PERFORMANCE ================= */
+
+.performance{
+  margin-top:70px;
+}
+
+.performance-head{
+  padding:27px;
+  border-radius:22px;
+  background:var(--ink);
+  color:#fff;
+  margin-bottom:18px;
+  position:relative;
+  overflow:hidden;
+}
+
+.performance-head:after{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  right:-80px;
+  top:-100px;
+  border-radius:50%;
+  background:var(--purple);
+  filter:blur(70px);
+  opacity:.45;
+}
+
+.performance-head-content{
+  position:relative;
+  z-index:2;
+}
+
+.performance-head .eyebrow{
+  color:#b9aaff;
+}
+
+.performance-head h2{
+  font-size:30px;
+  letter-spacing:-1px;
+}
+
+.performance-head p{
+  max-width:650px;
+  margin-top:8px;
+  color:#c3bfca;
+  line-height:1.7;
+  font-size:13px;
+}
+
+/* ================= INCLUDED ================= */
+
+.included-box{
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:30px;
+  background:#fff;
+}
+
+.included-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:22px;
+}
+
+.included-item{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fff;
+  font-size:13px;
+  font-weight:650;
+}
+
+.included-item i{
+  width:32px;
+  height:32px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:var(--soft);
+  color:var(--purple);
+}
+
+/* ================= ORDER ================= */
+
+.order-section{
+  padding:70px 0 90px;
+}
+
+.order-box{
+  padding:45px;
+  border-radius:28px;
+  background:linear-gradient(
+    135deg,
+    #faf9ff,
+    #f0ecff
+  );
+  border:1px solid #e5e0fa;
+  text-align:center;
+}
+
+.order-icon{
+  width:55px;
+  height:55px;
+  margin:0 auto 18px;
+  display:grid;
+  place-items:center;
+  border-radius:17px;
+  background:var(--purple);
+  color:#fff;
+  box-shadow:0 15px 30px rgba(118,87,255,.25);
+}
+
+.order-box h2{
+  font-size:35px;
+  letter-spacing:-1.5px;
+}
+
+.order-box p{
+  max-width:580px;
+  margin:12px auto 0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
+
+.discord-order{
+  margin-top:25px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:14px 22px;
+  border-radius:13px;
+  color:#fff;
+  background:#5865f2;
+  font-size:13px;
+  font-weight:850;
+  box-shadow:0 13px 28px rgba(88,101,242,.22);
+  transition:.25s;
+}
+
+.discord-order:hover{
+  transform:translateY(-3px);
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  padding:45px 0 24px;
+  border-top:1px solid var(--line);
+}
+
+.footer-top{
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  padding-bottom:30px;
+}
+
+.footer-brand{
+  max-width:360px;
+}
+
+.footer-brand h3{
+  font-size:19px;
+}
+
+.footer-brand p{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+}
+
+.footer-links{
+  display:flex;
+  gap:55px;
+}
+
+.footer-links h4{
+  font-size:12px;
+  margin-bottom:13px;
+}
+
+.footer-links a{
+  display:block;
+  margin:8px 0;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.footer-links a:hover{
+  color:var(--purple);
+}
+
+.copyright{
+  border-top:1px solid var(--line);
+  padding-top:18px;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  color:#99949f;
+  font-size:10px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:850px){
+
+  nav{
+    display:none;
+    position:absolute;
+    top:70px;
+    left:4%;
+    right:4%;
+    padding:15px;
+    flex-direction:column;
+    align-items:stretch;
+    background:#fffffff7;
+    backdrop-filter:blur(18px);
+    border:1px solid var(--line);
+    border-radius:18px;
+    box-shadow:var(--shadow);
+  }
+
+  nav.open{
+    display:flex;
+  }
+
+  nav a{
+    padding:10px;
+  }
+
+  .menu{
+    display:block;
+  }
+
+  .plans{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .included-grid{
+    grid-template-columns:1fr;
+  }
+
+  .footer-top{
+    flex-direction:column;
+  }
+}
+
+@media(max-width:560px){
+
+  .hero{
+    padding-top:135px;
+  }
+
+  .hero h1{
+    letter-spacing:-2.5px;
+  }
+
+  .hero-buttons{
+    flex-direction:column;
+  }
+
+  .hero-buttons .btn{
+    width:100%;
+  }
+
+  .plans{
+    grid-template-columns:1fr;
+  }
+
+  section{
+    padding:65px 0;
+  }
+
+  .performance{
+    margin-top:55px;
+  }
+
+  .performance-head{
+    padding:25px 22px;
+  }
+
+  .included-box{
+    padding:24px 20px;
+  }
+
+  .order-box{
+    padding:35px 22px;
+  }
+
+  .order-box h2{
+    font-size:29px;
+  }
+
+  .footer-links{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+  }
+
+  .copyright{
+    flex-direction:column;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header id="header">
+
+<div class="container nav">
+
+<a href="#home" class="brand">
+
+<span class="brand-icon">
+<i class="fa-solid fa-cloud"></i>
+</span>
+
+<span>Arvalon Cloud</span>
+
+</a>
+
+<nav id="nav">
+
+<a href="#home">Home</a>
+<a href="#standard">Standard</a>
+<a href="#performance">Performance</a>
+<a href="#included">Included</a>
+<a href="#order" class="nav-button">Order</a>
+
+</nav>
+
+<button class="menu" id="menu">
+<i class="fa-solid fa-bars"></i>
+</button>
+
+</div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="container hero-content">
+
+<span class="badge">
+
+<span class="badge-dot"></span>
+
+SA:MP Hosting Indonesia
+
+</span>
+
+<h1>
+
+Hosting
+<span class="gradient">
+SA:MP.
+</span>
+
+</h1>
+
+<p>
+
+Hosting SA:MP Indonesia dengan resource yang
+disesuaikan untuk server kecil hingga server besar.
+Dikelola dengan panel management yang praktis
+dan mudah digunakan.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#standard" class="btn btn-primary">
+
+<i class="fa-solid fa-server"></i>
+
+Lihat Paket
+
+</a>
+
+<a href="#order" class="btn btn-light">
+
+<i class="fa-brands fa-discord"></i>
+
+Order via Discord
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STANDARD -->
+
+<section id="standard">
+
+<div class="container">
+
+<div class="section-head">
+
+<div class="eyebrow">
+Standard List
+</div>
+
+<h2>
+Paket SA:MP untuk berbagai kebutuhan.
+</h2>
+
+<p>
+Pilih resource sesuai kebutuhan server kamu,
+mulai dari server kecil hingga server roleplay
+dengan kebutuhan resource yang lebih besar.
+</p>
+
+</div>
+
+
+<div class="plans">
+
+
+<!-- SAMP 01 -->
+
+<article class="plan">
+
+<div class="plan-top">
+
+<div>
+
+<div class="plan-code">
+SAMP-01 • STANDARD
+</div>
+
+<h3>Standard</h3>
+
+</div>
+
+</div>
+
+<div class="plan-price">
+
+<strong>Rp20.000</strong>
+
+<span>/ Bulan</span>
+
+</div>
+
+<div class="specs">
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-microchip"></i>
+CPU Limit
+</span>
+<span class="spec-value">50%</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-memory"></i>
+RAM
+</span>
+<span class="spec-value">2 GB</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-hard-drive"></i>
+Storage
+</span>
+<span class="spec-value">5 GB</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-users"></i>
+Max Player
+</span>
+<span class="spec-value">50 Players</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-location-dot"></i>
+Location
+</span>
+<span class="spec-value">Jakarta, Indonesia</span>
+</div>
+
+</div>
+
+<a class="plan-order" href="#" data-payment-order data-product="Standard" data-price="20000" data-redirect="https://discord.gg/GRkGwWE4C5">
+<i class="fa-solid fa-qrcode"></i>
+
+Bayar & Order
+</a>
+
+</article>
+
+
+<!-- SAMP 02 -->
+
+<article class="plan">
+
+<div class="plan-top">
+
+<div>
+
+<div class="plan-code">
+SAMP-02 • ADVANCED
+</div>
+
+<h3>Advanced</h3>
+
+</div>
+
+</div>
+
+<div class="plan-price">
+
+<strong>Rp30.000</strong>
+
+<span>/ Bulan</span>
+
+</div>
+
+<div class="specs">
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-microchip"></i>
+CPU Limit
+</span>
+<span class="spec-value">75%</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-memory"></i>
+RAM
+</span>
+<span class="spec-value">3 GB</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-hard-drive"></i>
+Storage
+</span>
+<span class="spec-value">8 GB</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-users"></i>
+Max Player
+</span>
+<span class="spec-value">75 Players</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-location-dot"></i>
+Location
+</span>
+<span class="spec-value">Jakarta, Indonesia</span>
+</div>
+
+</div>
+
+<a class="plan-order" href="#" data-payment-order data-product="Advanced" data-price="30000" data-redirect="https://discord.gg/GRkGwWE4C5">
+<i class="fa-solid fa-qrcode"></i>
+
+Bayar & Order
+</a>
+
+</article>
+
+
+<!-- SAMP 03 -->
+
+<article class="plan">
+
+<div class="plan-top">
+
+<div>
+
+<div class="plan-code">
+SAMP-03 • PREMIUM
+</div>
+
+<h3>Premium</h3>
+
+</div>
+
+</div>
+
+<div class="plan-price">
+
+<strong>Rp40.000</strong>
+
+<span>/ Bulan</span>
+
+</div>
+
+<div class="specs">
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-microchip"></i>
+CPU Limit
+</span>
+<span class="spec-value">100%</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-memory"></i>
+RAM
+</span>
+<span class="spec-value">4 GB</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-hard-drive"></i>
+Storage
+</span>
+<span class="spec-value">10 GB</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-users"></i>
+Max Player
+</span>
+<span class="spec-value">100 Players</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-location-dot"></i>
+Location
+</span>
+<span class="spec-value">Jakarta, Indonesia</span>
+</div>
+
+</div>
+
+<a class="plan-order" href="#" data-payment-order data-product="Premium" data-price="40000" data-redirect="https://discord.gg/GRkGwWE4C5">
+<i class="fa-solid fa-qrcode"></i>
+
+Bayar & Order
+</a>
+
+</article>
+
+
+<!-- SAMP 04 -->
+
+<article class="plan">
+
+<div class="plan-top">
+
+<div>
+
+<div class="plan-code">
+SAMP-04 • PRO
+</div>
+
+<h3>Pro</h3>
+
+</div>
+
+</div>
+
+<div class="plan-price">
+
+<strong>Rp50.000</strong>
+
+<span>/ Bulan</span>
+
+</div>
+
+<div class="specs">
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-microchip"></i>
+CPU Limit
+</span>
+<span class="spec-value">125%</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-memory"></i>
+RAM
+</span>
+<span class="spec-value">5 GB</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-hard-drive"></i>
+Storage
+</span>
+<span class="spec-value">15 GB</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-users"></i>
+Max Player
+</span>
+<span class="spec-value">120 Players</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-location-dot"></i>
+Location
+</span>
+<span class="spec-value">Jakarta, Indonesia</span>
+</div>
+
+</div>
+
+<a class="plan-order" href="#" data-payment-order data-product="Pro" data-price="50000" data-redirect="https://discord.gg/GRkGwWE4C5">
+<i class="fa-solid fa-qrcode"></i>
+
+Bayar & Order
+</a>
+
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HIGH PERFORMANCE -->
+
+<section class="performance" id="performance">
+
+<div class="container">
+
+<div class="performance-head">
+
+<div class="performance-head-content">
+
+<div class="eyebrow">
+High Performance
+</div>
+
+<h2>
+Untuk server SA:MP dengan kebutuhan lebih tinggi.
+</h2>
+
+<p>
+Untuk server SA:MP dengan gamemode besar,
+database aktif, banyak filterscript/plugin,
+dan jumlah player yang lebih tinggi.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="plans">
+
+
+<!-- HIGH 01 -->
+
+<article class="plan">
+
+<div class="plan-top">
+
+<div>
+
+<div class="plan-code">
+HIGH-01 • PERFORMANCE
+</div>
+
+<h3>Performance</h3>
+
+</div>
+
+</div>
+
+<div class="plan-price">
+
+<strong>Rp100.000</strong>
+
+<span>/ Bulan</span>
+
+</div>
+
+<div class="specs">
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-microchip"></i>
+CPU Limit
+</span>
+<span class="spec-value">150%</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-memory"></i>
+RAM
+</span>
+<span class="spec-value">6 GB</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-hard-drive"></i>
+Storage
+</span>
+<span class="spec-value">20 GB</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-users"></i>
+Max Player
+</span>
+<span class="spec-value">150 Players</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-location-dot"></i>
+Location
+</span>
+<span class="spec-value">Jakarta, Indonesia</span>
+</div>
+
+</div>
+
+<a class="plan-order" href="#" data-payment-order data-product="Performance" data-price="100000" data-redirect="https://discord.gg/GRkGwWE4C5">
+<i class="fa-solid fa-qrcode"></i>
+
+Bayar & Order
+</a>
+
+</article>
+
+
+<!-- HIGH 02 -->
+
+<article class="plan">
+
+<div class="plan-top">
+
+<div>
+
+<div class="plan-code">
+HIGH-02 • PERFORMANCE+
+</div>
+
+<h3>Performance+</h3>
+
+</div>
+
+</div>
+
+<div class="plan-price">
+
+<strong>Rp150.000</strong>
+
+<span>/ Bulan</span>
+
+</div>
+
+<div class="specs">
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-microchip"></i>
+CPU Limit
+</span>
+<span class="spec-value">200%</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-memory"></i>
+RAM
+</span>
+<span class="spec-value">8 GB</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-hard-drive"></i>
+Storage
+</span>
+<span class="spec-value">30 GB</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-users"></i>
+Max Player
+</span>
+<span class="spec-value">200 Players</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-location-dot"></i>
+Location
+</span>
+<span class="spec-value">Jakarta, Indonesia</span>
+</div>
+
+</div>
+
+<a class="plan-order" href="#" data-payment-order data-product="Performance+" data-price="150000" data-redirect="https://discord.gg/GRkGwWE4C5">
+<i class="fa-solid fa-qrcode"></i>
+
+Bayar & Order
+</a>
+
+</article>
+
+
+<!-- HIGH 03 -->
+
+<article class="plan">
+
+<div class="plan-top">
+
+<div>
+
+<div class="plan-code">
+HIGH-03 • EXTREME
+</div>
+
+<h3>Extreme</h3>
+
+</div>
+
+</div>
+
+<div class="plan-price">
+
+<strong>Rp200.000</strong>
+
+<span>/ Bulan</span>
+
+</div>
+
+<div class="specs">
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-microchip"></i>
+CPU Limit
+</span>
+<span class="spec-value">250%</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-memory"></i>
+RAM
+</span>
+<span class="spec-value">12 GB</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-hard-drive"></i>
+Storage
+</span>
+<span class="spec-value">40 GB</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-users"></i>
+Max Player
+</span>
+<span class="spec-value">300 Players</span>
+</div>
+
+<div class="spec">
+<span class="spec-label">
+<i class="fa-solid fa-location-dot"></i>
+Location
+</span>
+<span class="spec-value">Jakarta, Indonesia</span>
+</div>
+
+</div>
+
+<a class="plan-order" href="#" data-payment-order data-product="Extreme" data-price="200000" data-redirect="https://discord.gg/GRkGwWE4C5">
+<i class="fa-solid fa-qrcode"></i>
+
+Bayar & Order
+</a>
+
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- INCLUDED -->
+
+<section id="included">
+
+<div class="container">
+
+<div class="section-head">
+
+<div class="eyebrow">
+Included
+</div>
+
+<h2>
+Sudah termasuk di setiap paket.
+</h2>
+
+<p>
+Fasilitas yang tersedia untuk membantu
+pengelolaan server SA:MP kamu.
+</p>
+
+</div>
+
+
+<div class="included-box">
+
+<div class="included-grid">
+
+<div class="included-item">
+<i class="fa-solid fa-gauge-high"></i>
+<span>Panel Management</span>
+</div>
+
+<div class="included-item">
+<i class="fa-solid fa-folder-open"></i>
+<span>Full File Access</span>
+</div>
+
+<div class="included-item">
+<i class="fa-solid fa-database"></i>
+<span>Database Support</span>
+</div>
+
+<div class="included-item">
+<i class="fa-solid fa-gamepad"></i>
+<span>SA:MP / Open.MP Support</span>
+</div>
+
+<div class="included-item">
+<i class="fa-solid fa-rotate"></i>
+<span>Server Restart</span>
+</div>
+
+<div class="included-item">
+<i class="fa-solid fa-chart-line"></i>
+<span>Server Monitoring</span>
+</div>
+
+<div class="included-item">
+<i class="fa-solid fa-box-archive"></i>
+<span>Backup</span>
+</div>
+
+<div class="included-item">
+<i class="fa-solid fa-headset"></i>
+<span>Setup Assistance</span>
+</div>
+
+<div class="included-item">
+<i class="fa-solid fa-shield-halved"></i>
+<span>DDoS Protection*</span>
+</div>
+
+<div class="included-item">
+<i class="fa-solid fa-signal"></i>
+<span>Uptime Monitoring</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ORDER -->
+
+<section class="order-section" id="order">
+
+<div class="container">
+
+<div class="order-box">
+
+<div class="order-icon">
+<i class="fa-brands fa-discord"></i>
+</div>
+
+<h2>
+Siap membuat server SA:MP?
+</h2>
+
+<p>
+Buat ticket atau hubungi admin untuk melakukan
+pemesanan, menanyakan ketersediaan paket,
+atau melakukan konsultasi sebelum memilih layanan.
+</p>
+
+<a
+class="discord-order"
+href="https://discord.gg/GRkGwWE4C5"
+target="_blank"
+rel="noopener">
+
+<i class="fa-brands fa-discord"></i>
+
+Buat Ticket di Discord
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="container">
+
+<div class="footer-top">
+
+<div class="footer-brand">
+
+<h3>
+☁️ ARVALON CLOUD
+</h3>
+
+<p>
+Affordable Hosting • Growing Infrastructure
+</p>
+
+<p>
+Layanan hosting SA:MP Indonesia dengan resource
+yang disesuaikan untuk berbagai kebutuhan server.
+</p>
+
+</div>
+
+
+<div class="footer-links">
+
+<div>
+
+<h4>Hosting</h4>
+
+<a href="#standard">
+Standard
+</a>
+
+<a href="#performance">
+High Performance
+</a>
+
+<a href="#included">
+Included
+</a>
+
+</div>
+
+
+<div>
+
+<h4>Support</h4>
+
+<a href="#order">
+Order
+</a>
+
+<a
+href="https://discord.gg/GRkGwWE4C5"
+target="_blank"
+>
+Discord
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="copyright">
+
+<span>
+© <span id="year"></span> Arvalon Cloud. All rights reserved.
+</span>
+
+<span>
+Affordable Hosting • Growing Infrastructure
+</span>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<script>
+
+/* HEADER */
+
+const header =
+document.getElementById("header");
+
+window.addEventListener("scroll",()=>{
+
+header.classList.toggle(
+"scrolled",
+window.scrollY > 20
+);
+
+});
+
+
+/* MOBILE MENU */
+
+const menu =
+document.getElementById("menu");
+
+const nav =
+document.getElementById("nav");
+
+menu.addEventListener("click",()=>{
+
+nav.classList.toggle("open");
+
+});
+
+nav.querySelectorAll("a").forEach(a=>{
+
+a.addEventListener("click",()=>{
+
+nav.classList.remove("open");
+
+});
+
+});
+
+
+/* YEAR */
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+</script>
+
+<script src="../payment.js"></script>
+</body>
+</html>
