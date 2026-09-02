@@ -48,17 +48,19 @@ async function handler(req, res) {
     }
 
     const qris = data.data || {};
-    if (!qris.id || !qris.qr_image) {
+    const transactionId = String(qris.id || qris.invoice || qris.transaction_id || '').trim();
+    if (!transactionId || !qris.qr_image) {
       return res.status(502).json({ success: false, message: 'Respons XS-Pedia tidak berisi ID transaksi atau QR image.' });
     }
 
-    const totalAmount = Number(qris.total_amount || amount);
-    const expiresAt = Date.now() + 15 * 60 * 1000;
+    const totalAmount = Number(qris.total_amount || qris.amount || amount);
+    const expiresAt = qris.expires_at ? new Date(qris.expires_at).getTime() : Date.now() + 15 * 60 * 1000;
 
     return res.status(200).json({
       success: true,
       data: {
-        id: String(qris.id),
+        id: transactionId,
+        invoice: qris.invoice || null,
         product,
         amount,
         total_amount: totalAmount,

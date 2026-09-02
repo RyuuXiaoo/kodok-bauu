@@ -1,5 +1,6 @@
 async function handler(req, res) {
   if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET');
     return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
 
@@ -10,27 +11,38 @@ async function handler(req, res) {
       return res.status(500).json({ success: false, message: 'XS_PEDIA_APIKEY belum diatur di environment.' });
     }
 
-    const id = String(req.query?.id || '').trim();
+    const rawId = req.query?.id;
+    const id = String(Array.isArray(rawId) ? rawId[0] : (rawId || '')).trim();
     if (!id) return res.status(400).json({ success: false, message: 'ID transaksi wajib diisi.' });
 
-    const params = new URLSearchParams({ id });
-    const response = await fetch(`${baseUrl}/h2h/deposit/status?${params.toString()}`, {
+    const url = `${baseUrl}/h2h/deposit/status?${new URLSearchParams({ id }).toString()}`;
+    const response = await fetch(url, {
       method: 'GET',
-      headers: { 'X-APIKEY': apiKey, 'Accept': 'application/json' },
+      headers: { 'X-APIKEY': apiKey, 'Accept': 'application/json', 'Cache-Control': 'no-cache' },
       cache: 'no-store'
     });
     const data = await response.json().catch(() => ({}));
 
-    if (!response.ok || !data.success) {
-      return res.status(502).json({ success: false, message: data.message || `XS-Pedia mengembalikan HTTP ${response.status}` });
+    if (!response.ok || data.success !== true) {
+      return res.status(502).json({
+        success: false,
+        message: data.message || `XS-Pedia gagal mengecek status (HTTP ${response.status}).`
+      });
     }
 
-    return res.status(200).json({ success: true, data: data.data || {} });
+    const detail = data.data || {};
+    return res.status(200).json({
+      success: true,
+      data: {
+        ...detail,
+        id: String(detail.id || detail.invoice || detail.transaction_id || id),
+        status: detail.status || detail.transaction_status || detail.payment_status || 'pending'
+      }
+    });
   } catch (error) {
     console.error('check-payment error:', error);
     return res.status(500).json({ success: false, message: 'Terjadi kesalahan saat mengecek pembayaran.' });
   }
 }
-
 
 module.exports = handler;
