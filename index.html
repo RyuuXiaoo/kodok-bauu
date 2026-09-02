@@ -1,0 +1,2712 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="description"
+  content="FrogzzShop adalah digital store yang menyediakan berbagai layanan dan produk digital, mulai dari jasa developer, SA:MP, hosting, server, desain, hingga kebutuhan digital custom."
+>
+
+<meta
+  name="keywords"
+  content="FrogzzShop, digital store, jasa digital, SA:MP, hosting, server, developer, design, jasa developer, server pack, open.mp"
+>
+
+<meta
+  name="author"
+  content="FrogzzShop"
+>
+
+<meta
+  name="robots"
+  content="index, follow"
+>
+
+<meta
+  name="theme-color"
+  content="#7657ff"
+>
+
+<link
+  rel="canonical"
+  href="https://frogzzshop.netlify.app/"
+>
+
+
+<!-- ================= FAVICON ================= -->
+
+<link
+  rel="icon"
+  type="image/png"
+  href="https://frogzzshop.netlify.app/assets/og-image.png"
+>
+
+
+<!-- ================= OPEN GRAPH ================= -->
+
+<meta
+  property="og:type"
+  content="website"
+>
+
+<meta
+  property="og:site_name"
+  content="FrogzzShop"
+>
+
+<meta
+  property="og:locale"
+  content="id_ID"
+>
+
+<meta
+  property="og:title"
+  content="FrogzzShop — Digital Services & Products"
+>
+
+<meta
+  property="og:description"
+  content="Temukan berbagai layanan dan produk digital FrogzzShop. Developer, SA:MP, hosting, server, desain, hingga kebutuhan digital custom."
+>
+
+<meta
+  property="og:url"
+  content="https://frogzzshop.netlify.app/"
+>
+
+<meta
+  property="og:image"
+  content="https://frogzzshop.netlify.app/assets/og-image.png"
+>
+
+<meta
+  property="og:image:secure_url"
+  content="https://frogzzshop.netlify.app/assets/og-image.png"
+>
+
+<meta
+  property="og:image:type"
+  content="image/png"
+>
+
+<meta
+  property="og:image:width"
+  content="1200"
+>
+
+<meta
+  property="og:image:height"
+  content="630"
+>
+
+<meta
+  property="og:image:alt"
+  content="FrogzzShop — Digital Services & Products"
+>
+
+
+<!-- ================= TWITTER / X ================= -->
+
+<meta
+  name="twitter:card"
+  content="summary_large_image"
+>
+
+<meta
+  name="twitter:title"
+  content="FrogzzShop — Digital Services & Products"
+>
+
+<meta
+  name="twitter:description"
+  content="Jasa dan produk digital untuk kebutuhan server, development, hosting, desain, SA:MP, Open-MP, dan kebutuhan digital custom."
+>
+
+<meta
+  name="twitter:image"
+  content="https://frogzzshop.netlify.app/assets/og-image.png"
+>
+
+<meta
+  name="twitter:image:alt"
+  content="FrogzzShop — Digital Services & Products"
+>
+
+
+<!-- ================= TITLE ================= -->
+
+<title>
+  FrogzzShop — Digital Services & Products
+</title>
+
+
+<!-- ================= FONT AWESOME ================= -->
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+
+<!-- ================= STRUCTURED DATA ================= -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "FrogzzShop",
+  "url": "https://frogzzshop.netlify.app/",
+  "description": "Digital store yang menyediakan berbagai layanan dan produk digital seperti developer, SA:MP, hosting, server, desain, dan kebutuhan digital custom.",
+  "sameAs": [
+    "https://discord.gg/GRkGwWE4C5"
+  ]
+}
+</script>
+
+
+<style>
+
+:root{
+  --p:#7657ff;
+  --p2:#9b7cff;
+  --soft:#f2efff;
+  --ink:#17151f;
+  --muted:#777382;
+  --line:#eceaf2;
+  --green:#22c55e;
+  --blue:#5865f2;
+  --shadow:0 20px 60px rgba(91,70,180,.11)
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0
+}
+
+html{
+  scroll-behavior:smooth
+}
+
+body{
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:#fff;
+  overflow-x:hidden
+}
+
+a{
+  text-decoration:none;
+  color:inherit
+}
+
+button{
+  font:inherit
+}
+
+.container{
+  width:min(1120px,92%);
+  margin:auto
+}
+
+
+/* ================= BACKGROUND ================= */
+
+.blur{
+  position:fixed;
+  border-radius:50%;
+  filter:blur(90px);
+  opacity:.22;
+  pointer-events:none;
+  z-index:-1
+}
+
+.b1{
+  width:300px;
+  height:300px;
+  background:#a88fff;
+  top:-120px;
+  left:-100px
+}
+
+.b2{
+  width:300px;
+  height:300px;
+  background:#d0c5ff;
+  right:-130px;
+  top:450px
+}
+
+.b3{
+  width:250px;
+  height:250px;
+  background:#eee9ff;
+  left:20%;
+  bottom:-120px
+}
+
+
+/* ================= HEADER ================= */
+
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:50;
+  padding:15px 0;
+  transition:.3s
+}
+
+header.scrolled{
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(236,234,242,.9)
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:-.7px
+}
+
+.logo{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  background:linear-gradient(135deg,var(--p),var(--p2));
+  box-shadow:0 10px 25px #7657ff40
+}
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:27px
+}
+
+nav a{
+  font-size:14px;
+  font-weight:650;
+  color:#625e6c;
+  transition:.2s
+}
+
+nav a:hover{
+  color:var(--p)
+}
+
+.nav-cta{
+  background:var(--ink);
+  color:#fff!important;
+  padding:11px 17px;
+  border-radius:12px
+}
+
+.menu{
+  display:none;
+  width:42px;
+  height:42px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:12px;
+  cursor:pointer;
+  color:var(--ink)
+}
+
+
+/* ================= HERO ================= */
+
+.hero{
+  min-height:760px;
+  padding:165px 0 85px;
+  display:flex;
+  align-items:center;
+  text-align:center
+}
+
+.hero-inner{
+  max-width:900px;
+  margin:auto
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 13px;
+  border:1px solid #e5e0ff;
+  border-radius:999px;
+  background:#ffffffcc;
+  color:#6849e8;
+  font-size:12px;
+  font-weight:800;
+  box-shadow:0 8px 30px #7657ff14
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--p);
+  box-shadow:0 0 0 5px #eeeaff
+}
+
+h1{
+  margin-top:23px;
+  font-size:clamp(46px,7vw,78px);
+  line-height:.98;
+  letter-spacing:-4px;
+  font-weight:950;
+  animation:up .8s ease both
+}
+
+.gradient{
+  background:linear-gradient(
+    120deg,
+    #191720 15%,
+    #7657ff 65%,
+    #a084ff
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent
+}
+
+.hero p{
+  max-width:650px;
+  margin:25px auto 0;
+  color:var(--muted);
+  line-height:1.8;
+  font-size:16px;
+  animation:up .8s .1s ease both
+}
+
+
+/* ================= HERO BUTTON ================= */
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  align-items:stretch;
+  gap:12px;
+  margin-top:32px;
+  animation:up .8s .2s ease both
+}
+
+.btn{
+  min-width:170px;
+  border:0;
+  cursor:pointer;
+  padding:14px 20px;
+  border-radius:14px;
+  font-weight:800;
+  font-size:14px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  transition:.25s
+}
+
+.btn:hover{
+  transform:translateY(-3px)
+}
+
+.primary{
+  color:#fff;
+  background:linear-gradient(
+    135deg,
+    var(--p),
+    var(--p2)
+  );
+  box-shadow:0 14px 30px #7657ff3d
+}
+
+.light{
+  background:#fff;
+  border:1px solid var(--line)
+}
+
+.light:hover{
+  border-color:#d8d2ef
+}
+
+.consult{
+  color:#fff;
+  background:linear-gradient(
+    135deg,
+    #22c55e,
+    #16a34a
+  );
+  box-shadow:0 14px 30px rgba(34,197,94,.22)
+}
+
+.consult:hover{
+  box-shadow:0 18px 35px rgba(34,197,94,.3)
+}
+
+
+/* ================= HERO CARD ================= */
+
+.hero-card{
+  margin:60px auto 0;
+  padding:14px;
+  border:1px solid #eeeaf6;
+  border-radius:28px;
+  background:#ffffffb8;
+  box-shadow:var(--shadow)
+}
+
+.stats{
+  min-height:170px;
+  border-radius:20px;
+  background:linear-gradient(
+    135deg,
+    #faf9ff,
+    #f1edff
+  );
+  display:grid;
+  grid-template-columns:repeat(3,1fr)
+}
+
+.stat{
+  padding:35px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  border-right:1px solid #e7e1fa
+}
+
+.stat:last-child{
+  border:0
+}
+
+.stat i{
+  color:var(--p);
+  font-size:23px
+}
+
+.stat strong{
+  font-size:25px
+}
+
+.stat span{
+  font-size:12px;
+  color:var(--muted)
+}
+
+
+/* ================= SECTION ================= */
+
+section{
+  padding:100px 0
+}
+
+.eyebrow{
+  color:var(--p);
+  font-size:12px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:1.6px;
+  margin-bottom:10px
+}
+
+.head{
+  margin-bottom:38px
+}
+
+.head h2{
+  font-size:clamp(31px,5vw,45px);
+  letter-spacing:-2px;
+  line-height:1.05
+}
+
+.head p{
+  color:var(--muted);
+  margin-top:12px;
+  max-width:680px;
+  line-height:1.7
+}
+
+
+/* ================= PRODUCTS ================= */
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px
+}
+
+.product{
+  position:relative;
+  padding:24px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:#ffffffe8;
+  overflow:hidden;
+  transition:.3s
+}
+
+.product:before{
+  content:"";
+  position:absolute;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:#eeeaff;
+  filter:blur(30px);
+  right:-50px;
+  top:-50px
+}
+
+.product:hover{
+  transform:translateY(-7px);
+  border-color:#ded7ff;
+  box-shadow:var(--shadow)
+}
+
+.icon{
+  width:48px;
+  height:48px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  background:var(--soft);
+  color:var(--p);
+  margin-bottom:22px;
+  position:relative
+}
+
+.product h3{
+  font-size:19px;
+  margin-bottom:8px
+}
+
+.product p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+  min-height:65px
+}
+
+.product-bottom{
+  margin-top:20px;
+  padding-top:17px;
+  border-top:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px
+}
+
+.price{
+  font-size:14px;
+  font-weight:850
+}
+
+.price span{
+  color:var(--p)
+}
+
+.buy{
+  color:#fff;
+  background:var(--ink);
+  padding:10px 14px;
+  border-radius:11px;
+  font-size:12px;
+  font-weight:800;
+  transition:.2s
+}
+
+.buy:hover{
+  background:var(--p)
+}
+
+
+/* ================= FEATURES ================= */
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px
+}
+
+.feature{
+  padding:23px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff
+}
+
+.feature i{
+  color:var(--p);
+  font-size:20px
+}
+
+.feature h3{
+  font-size:15px;
+  margin:15px 0 7px
+}
+
+.feature p{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.6
+}
+
+
+/* ================= ABOUT ================= */
+
+.about{
+  padding:45px;
+  border-radius:28px;
+  background:var(--ink);
+  color:#fff;
+  position:relative;
+  overflow:hidden
+}
+
+.about:after{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  background:var(--p);
+  filter:blur(90px);
+  opacity:.35;
+  right:-100px;
+  top:-100px
+}
+
+.about-content{
+  position:relative;
+  z-index:2;
+  max-width:800px
+}
+
+.about .eyebrow{
+  color:#b9aaff
+}
+
+.about h2{
+  font-size:40px;
+  letter-spacing:-2px
+}
+
+.about p{
+  margin-top:15px;
+  color:#c3bfca;
+  line-height:1.8;
+  font-size:14px
+}
+
+.about-points{
+  margin-top:25px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px
+}
+
+.about-point{
+  padding:15px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  background:rgba(255,255,255,.04)
+}
+
+.about-point i{
+  color:#b9aaff;
+  margin-right:7px
+}
+
+.about-point span{
+  color:#ddd9e2;
+  font-size:12px
+}
+
+
+/* ================= FAQ ================= */
+
+.faq{
+  max-width:820px
+}
+
+.faq-item{
+  border-bottom:1px solid var(--line)
+}
+
+.q{
+  width:100%;
+  border:0;
+  background:none;
+  text-align:left;
+  padding:22px 0;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  font-weight:800;
+  color:var(--ink)
+}
+
+.q i{
+  color:var(--p);
+  transition:.25s
+}
+
+.answer{
+  max-height:0;
+  overflow:hidden;
+  transition:.35s;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.8
+}
+
+.answer p{
+  padding:0 30px 20px 0
+}
+
+.faq-item.active .answer{
+  max-height:250px
+}
+
+.faq-item.active .q i{
+  transform:rotate(45deg)
+}
+
+
+/* ================= LEGAL ================= */
+
+.legal-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px
+}
+
+.legal-card{
+  padding:30px;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:#fff
+}
+
+.legal-icon{
+  width:48px;
+  height:48px;
+  border-radius:15px;
+  background:var(--soft);
+  color:var(--p);
+  display:grid;
+  place-items:center;
+  margin-bottom:18px
+}
+
+.legal-card h3{
+  font-size:21px;
+  margin-bottom:10px
+}
+
+.legal-card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8
+}
+
+.legal-list{
+  margin-top:18px;
+  display:grid;
+  gap:10px
+}
+
+.legal-list div{
+  display:flex;
+  gap:10px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6
+}
+
+.legal-list i{
+  color:var(--p);
+  margin-top:3px
+}
+
+
+/* ================= CONTACT ================= */
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px
+}
+
+.contact{
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:30px;
+  background:#fff
+}
+
+.contact h3{
+  font-size:22px;
+  margin-bottom:8px
+}
+
+.contact>p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7
+}
+
+.links{
+  margin-top:23px;
+  display:grid;
+  gap:10px
+}
+
+.link{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  transition:.25s
+}
+
+.link:hover{
+  border-color:#d8d0ff;
+  background:#faf9ff;
+  transform:translateX(3px)
+}
+
+.link i{
+  width:37px;
+  height:37px;
+  display:grid;
+  place-items:center;
+  border-radius:11px;
+  background:var(--soft);
+  color:var(--p)
+}
+
+.link strong{
+  font-size:13px
+}
+
+.link small{
+  display:block;
+  color:var(--muted);
+  margin-top:2px
+}
+
+
+/* ================= FOOTER ================= */
+
+footer{
+  margin-top:30px;
+  padding:55px 0 25px;
+  border-top:1px solid var(--line)
+}
+
+.footer-top{
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  padding-bottom:35px
+}
+
+.footer-brand{
+  max-width:350px
+}
+
+.footer-brand p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+  margin-top:13px
+}
+
+.footer-links{
+  display:flex;
+  gap:60px
+}
+
+.footer-links h4{
+  font-size:13px;
+  margin-bottom:14px
+}
+
+.footer-links a{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin:9px 0
+}
+
+.footer-links a:hover{
+  color:var(--p)
+}
+
+.copyright{
+  border-top:1px solid var(--line);
+  padding-top:20px;
+  display:flex;
+  justify-content:space-between;
+  color:#98939f;
+  font-size:11px
+}
+
+
+/* ================= TOAST ================= */
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:100;
+  padding:13px 17px;
+  background:var(--ink);
+  color:#fff;
+  border-radius:13px;
+  font-size:12px;
+  transform:translateY(100px);
+  opacity:0;
+  transition:.3s
+}
+
+.toast.show{
+  transform:translateY(0);
+  opacity:1
+}
+
+
+/* ================= ANIMATION ================= */
+
+@keyframes up{
+
+  from{
+    opacity:0;
+    transform:translateY(20px)
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0)
+  }
+
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:850px){
+
+  nav{
+    display:none;
+    position:absolute;
+    top:72px;
+    left:4%;
+    right:4%;
+    padding:15px;
+    flex-direction:column;
+    align-items:stretch;
+    background:#fffffff7;
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid var(--line);
+    border-radius:18px;
+    box-shadow:var(--shadow)
+  }
+
+  nav.open{
+    display:flex
+  }
+
+  nav a{
+    padding:10px 8px
+  }
+
+  .menu{
+    display:block
+  }
+
+  .products{
+    grid-template-columns:1fr 1fr
+  }
+
+  .features{
+    grid-template-columns:1fr 1fr
+  }
+
+  .contact-grid,
+  .legal-grid{
+    grid-template-columns:1fr
+  }
+
+  .footer-top{
+    flex-direction:column
+  }
+
+  .footer-links{
+    gap:35px
+  }
+
+}
+
+
+@media(max-width:650px){
+
+  .buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px
+  }
+
+  .buttons .btn{
+    width:100%;
+    min-width:0
+  }
+
+  .buttons .btn:first-child{
+    grid-column:1 / -1
+  }
+
+}
+
+
+@media(max-width:560px){
+
+  .hero{
+    min-height:700px;
+    padding-top:140px
+  }
+
+  h1{
+    letter-spacing:-2.5px
+  }
+
+  .buttons{
+    display:flex;
+    flex-direction:column
+  }
+
+  .buttons .btn{
+    width:100%
+  }
+
+  .stats{
+    grid-template-columns:1fr
+  }
+
+  .stat{
+    border-right:0;
+    border-bottom:1px solid #e7e1fa;
+    padding:22px
+  }
+
+  .stat:last-child{
+    border-bottom:0
+  }
+
+  section{
+    padding:75px 0
+  }
+
+  .products,
+  .features{
+    grid-template-columns:1fr
+  }
+
+  .about{
+    padding:30px 24px
+  }
+
+  .about h2{
+    font-size:32px
+  }
+
+  .about-points{
+    grid-template-columns:1fr
+  }
+
+  .footer-links{
+    display:grid;
+    grid-template-columns:1fr 1fr
+  }
+
+  .copyright{
+    flex-direction:column;
+    gap:8px
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="blur b1"></div>
+<div class="blur b2"></div>
+<div class="blur b3"></div>
+
+
+<!-- ================= HEADER ================= -->
+
+<header id="header">
+
+  <div class="container nav">
+
+    <a
+      href="#home"
+      class="brand"
+      aria-label="FrogzzShop Home"
+    >
+
+      <span class="logo">
+        <i class="fa-solid fa-bolt"></i>
+      </span>
+
+      <span>
+        FrogzzShop
+      </span>
+
+    </a>
+
+
+    <nav id="nav">
+
+      <a href="#home">
+        Home
+      </a>
+
+      <a href="#produk">
+        Produk
+      </a>
+
+      <a href="#tentang">
+        Tentang
+      </a>
+
+      <a href="#faq">
+        FAQ
+      </a>
+
+      <a href="#legal">
+        Legal
+      </a>
+
+      <a
+        href="#kontak"
+        class="nav-cta"
+      >
+        Contact
+      </a>
+
+    </nav>
+
+
+    <button
+      class="menu"
+      id="menu"
+      type="button"
+      aria-label="Buka menu"
+      aria-expanded="false"
+    >
+
+      <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+  </div>
+
+</header>
+
+
+<main>
+
+
+<!-- ================= HERO ================= -->
+
+<section
+  class="hero"
+  id="home"
+>
+
+  <div class="container hero-inner">
+
+
+    <span class="badge">
+
+      <span class="dot"></span>
+
+      Digital Services • Fast & Reliable
+
+    </span>
+
+
+    <h1>
+
+      Welcome to
+
+      <span class="gradient">
+        FrogzzShop.
+      </span>
+
+    </h1>
+
+
+    <p>
+
+      Platform digital yang menyediakan berbagai jasa dan produk
+      untuk kebutuhan server, development, hosting, desain,
+      SA:MP, Open-MP, dan kebutuhan digital lainnya.
+
+    </p>
+
+
+    <div class="buttons">
+
+
+      <a
+        class="btn primary"
+        href="#produk"
+      >
+
+        <i class="fa-solid fa-bag-shopping"></i>
+
+        Lihat Produk
+
+      </a>
+
+
+      <a
+        class="btn light"
+        href="#kontak"
+      >
+
+        <i class="fa-regular fa-comments"></i>
+
+        Hubungi Kami
+
+      </a>
+
+
+      <a
+        class="btn consult"
+        href="https://wa.me/62895622710513?text=Halo%20FrogzzShop,%20saya%20ingin%20konsultasi%20mengenai%20layanan%20yang%20tersedia."
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <i class="fa-brands fa-whatsapp"></i>
+
+        Konsultasi
+
+      </a>
+
+
+    </div>
+
+
+    <div class="hero-card">
+
+
+      <div class="stats">
+
+
+        <div class="stat">
+
+          <i class="fa-solid fa-layer-group"></i>
+
+          <strong>
+            Digital
+          </strong>
+
+          <span>
+            Services & Products
+          </span>
+
+        </div>
+
+
+        <div class="stat">
+
+          <i class="fa-solid fa-bolt"></i>
+
+          <strong>
+            Fast
+          </strong>
+
+          <span>
+            Proses praktis
+          </span>
+
+        </div>
+
+
+        <div class="stat">
+
+          <i class="fa-solid fa-headset"></i>
+
+          <strong>
+            Support
+          </strong>
+
+          <span>
+            Siap membantu
+          </span>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- ================= PRODUK ================= -->
+
+<section id="produk">
+
+  <div class="container">
+
+
+    <div class="head">
+
+      <div class="eyebrow">
+        Our Products
+      </div>
+
+      <h2>
+        Jasa & produk pilihan.
+      </h2>
+
+      <p>
+        Temukan berbagai layanan digital yang tersedia di FrogzzShop.
+        Pilih layanan yang sesuai dan hubungi kami untuk informasi
+        serta proses pemesanan.
+      </p>
+
+    </div>
+
+
+    <div
+      class="products"
+      id="productList"
+    ></div>
+
+
+  </div>
+
+</section>
+
+
+<!-- ================= WHY US ================= -->
+
+<section>
+
+  <div class="container">
+
+
+    <div class="head">
+
+      <div class="eyebrow">
+        Why FrogzzShop
+      </div>
+
+      <h2>
+        Dibuat simpel, tetap profesional.
+      </h2>
+
+      <p>
+        Kami berusaha memberikan pengalaman yang sederhana,
+        jelas, dan mudah digunakan untuk setiap pelanggan.
+      </p>
+
+    </div>
+
+
+    <div class="features">
+
+
+      <div class="feature">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <h3>
+          Informasi Jelas
+        </h3>
+
+        <p>
+          Detail layanan dan produk ditampilkan agar pelanggan
+          mengetahui apa yang akan dipesan.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <i class="fa-solid fa-gauge-high"></i>
+
+        <h3>
+          Praktis
+        </h3>
+
+        <p>
+          Proses pemesanan diarahkan melalui channel resmi
+          agar lebih mudah.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+        <h3>
+          Modern
+        </h3>
+
+        <p>
+          Website dirancang dengan tampilan clean,
+          responsive, dan nyaman digunakan.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <i class="fa-solid fa-headset"></i>
+
+        <h3>
+          Support
+        </h3>
+
+        <p>
+          Pelanggan dapat berkonsultasi sebelum melakukan
+          pemesanan.
+        </p>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="tentang">
+
+  <div class="container">
+
+
+    <div class="about">
+
+
+      <div class="about-content">
+
+
+        <div class="eyebrow">
+          About FrogzzShop
+        </div>
+
+
+        <h2>
+          Lebih dari sekadar toko digital.
+        </h2>
+
+
+        <p>
+          FrogzzShop hadir sebagai platform yang menyediakan berbagai
+          jasa dan produk digital untuk membantu kebutuhan pelanggan,
+          komunitas, server, dan project digital.
+        </p>
+
+
+        <p>
+          Kami mengutamakan informasi yang mudah dipahami,
+          proses pemesanan yang praktis, serta komunikasi langsung
+          melalui channel resmi.
+        </p>
+
+
+        <div class="about-points">
+
+
+          <div class="about-point">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <span>
+              Informasi produk dibuat transparan.
+            </span>
+
+          </div>
+
+
+          <div class="about-point">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <span>
+              Komunikasi melalui channel resmi.
+            </span>
+
+          </div>
+
+
+          <div class="about-point">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <span>
+              Bisa konsultasi sebelum order.
+            </span>
+
+          </div>
+
+
+          <div class="about-point">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <span>
+              Ketentuan layanan dapat diperiksa terlebih dahulu.
+            </span>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- ================= FAQ ================= -->
+
+<section id="faq">
+
+  <div class="container">
+
+
+    <div class="head">
+
+      <div class="eyebrow">
+        FAQ
+      </div>
+
+      <h2>
+        Pertanyaan umum.
+      </h2>
+
+      <p>
+        Jawaban singkat untuk membantu pelanggan sebelum
+        melakukan pemesanan.
+      </p>
+
+    </div>
+
+
+    <div class="faq">
+
+
+      <div class="faq-item">
+
+        <button
+          class="q"
+          type="button"
+        >
+
+          Bagaimana cara membeli produk?
+
+          <i class="fa-solid fa-plus"></i>
+
+        </button>
+
+
+        <div class="answer">
+
+          <p>
+            Pilih produk yang diinginkan lalu klik tombol Pesan.
+            Kamu akan diarahkan ke channel pemesanan yang tersedia.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <button
+          class="q"
+          type="button"
+        >
+
+          Apakah semua produk tersedia setiap saat?
+
+          <i class="fa-solid fa-plus"></i>
+
+        </button>
+
+
+        <div class="answer">
+
+          <p>
+            Ketersediaan dapat berbeda untuk setiap produk.
+            Hubungi admin terlebih dahulu untuk memastikan
+            detail terbaru.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <button
+          class="q"
+          type="button"
+        >
+
+          Bagaimana cara menghubungi admin?
+
+          <i class="fa-solid fa-plus"></i>
+
+        </button>
+
+
+        <div class="answer">
+
+          <p>
+            Gunakan salah satu channel resmi pada bagian Contact,
+            seperti WhatsApp atau Discord.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <button
+          class="q"
+          type="button"
+        >
+
+          Apakah bisa request jasa custom?
+
+          <i class="fa-solid fa-plus"></i>
+
+        </button>
+
+
+        <div class="answer">
+
+          <p>
+            Bisa. Kirim kebutuhanmu melalui WhatsApp atau Discord
+            agar admin dapat mengecek apakah request tersebut
+            dapat dikerjakan.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <button
+          class="q"
+          type="button"
+        >
+
+          Apakah bisa konsultasi sebelum order?
+
+          <i class="fa-solid fa-plus"></i>
+
+        </button>
+
+
+        <div class="answer">
+
+          <p>
+            Tentu. Gunakan tombol Konsultasi untuk menghubungi
+            FrogzzShop melalui WhatsApp sebelum melakukan pemesanan.
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- ================= LEGAL ================= -->
+
+<section id="legal">
+
+  <div class="container">
+
+
+    <div class="head">
+
+      <div class="eyebrow">
+        Legal Information
+      </div>
+
+      <h2>
+        Informasi & ketentuan.
+      </h2>
+
+      <p>
+        Kami ingin pelanggan mengetahui ketentuan layanan
+        sebelum melakukan pemesanan.
+      </p>
+
+    </div>
+
+
+    <div class="legal-grid">
+
+
+      <!-- TERMS -->
+
+      <div class="legal-card">
+
+
+        <div class="legal-icon">
+
+          <i class="fa-solid fa-file-contract"></i>
+
+        </div>
+
+
+        <h3>
+          Terms & Conditions
+        </h3>
+
+
+        <p>
+          Dengan menggunakan layanan FrogzzShop atau melakukan
+          pemesanan, pelanggan dianggap telah membaca dan memahami
+          ketentuan yang berlaku.
+        </p>
+
+
+        <div class="legal-list">
+
+
+          <div>
+
+            <i class="fa-solid fa-check"></i>
+
+            <span>
+              Pastikan detail produk dan layanan sudah dipahami
+              sebelum melakukan order.
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <i class="fa-solid fa-check"></i>
+
+            <span>
+              Harga, spesifikasi, dan estimasi pengerjaan dapat
+              berbeda pada setiap layanan.
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <i class="fa-solid fa-check"></i>
+
+            <span>
+              Pembayaran hanya dilakukan melalui metode yang
+              dikonfirmasi oleh admin.
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <i class="fa-solid fa-check"></i>
+
+            <span>
+              Kebijakan revisi, refund, atau garansi mengikuti
+              ketentuan masing-masing produk.
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <i class="fa-solid fa-check"></i>
+
+            <span>
+              Untuk layanan custom, detail pekerjaan harus
+              disepakati terlebih dahulu.
+            </span>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+      <!-- PRIVACY -->
+
+      <div class="legal-card">
+
+
+        <div class="legal-icon">
+
+          <i class="fa-solid fa-user-shield"></i>
+
+        </div>
+
+
+        <h3>
+          Privacy Policy
+        </h3>
+
+
+        <p>
+          FrogzzShop menghargai privasi pelanggan. Informasi
+          yang diberikan melalui proses komunikasi digunakan
+          seperlunya untuk membantu proses pemesanan dan pelayanan.
+        </p>
+
+
+        <div class="legal-list">
+
+
+          <div>
+
+            <i class="fa-solid fa-check"></i>
+
+            <span>
+              Data pelanggan tidak diminta lebih dari yang
+              diperlukan untuk layanan.
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <i class="fa-solid fa-check"></i>
+
+            <span>
+              Informasi digunakan untuk komunikasi,
+              pemrosesan order, dan support.
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <i class="fa-solid fa-check"></i>
+
+            <span>
+              Jangan mengirimkan password atau informasi
+              keamanan akun kepada admin.
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <i class="fa-solid fa-check"></i>
+
+            <span>
+              Komunikasi melalui WhatsApp atau Discord juga
+              mengikuti kebijakan platform tersebut.
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <i class="fa-solid fa-check"></i>
+
+            <span>
+              Jika memiliki pertanyaan mengenai penggunaan data,
+              silakan hubungi admin.
+            </span>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="kontak">
+
+  <div class="container">
+
+
+    <div class="head">
+
+      <div class="eyebrow">
+        Contact
+      </div>
+
+      <h2>
+        Butuh bantuan? Kami siap.
+      </h2>
+
+      <p>
+        Hubungi FrogzzShop melalui channel resmi di bawah ini.
+      </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+
+      <div class="contact">
+
+
+        <h3>
+          Official Channels
+        </h3>
+
+
+        <p>
+          Pilih platform yang paling nyaman untuk menghubungi kami.
+        </p>
+
+
+        <div class="links">
+
+
+          <a
+            class="link"
+            id="waLink"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Hubungi FrogzzShop melalui WhatsApp"
+          >
+
+            <i class="fa-brands fa-whatsapp"></i>
+
+            <span>
+
+              <strong>
+                WhatsApp
+              </strong>
+
+              <small>
+                Chat langsung dengan admin
+              </small>
+
+            </span>
+
+          </a>
+
+
+          <a
+            class="link"
+            id="dcLink"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Join Discord FrogzzShop"
+          >
+
+            <i class="fa-brands fa-discord"></i>
+
+            <span>
+
+              <strong>
+                Discord
+              </strong>
+
+              <small>
+                Join community FrogzzShop
+              </small>
+
+            </span>
+
+          </a>
+
+
+          <a
+            class="link"
+            id="channelLink"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp Channel FrogzzShop"
+          >
+
+            <i class="fa-solid fa-bullhorn"></i>
+
+            <span>
+
+              <strong>
+                WhatsApp Channel
+              </strong>
+
+              <small>
+                Update produk & informasi
+              </small>
+
+            </span>
+
+          </a>
+
+
+        </div>
+
+
+      </div>
+
+
+      <div class="contact">
+
+
+        <h3>
+          Konsultasi
+        </h3>
+
+
+        <p>
+          Masih bingung memilih layanan? Tidak masalah.
+          Kamu bisa konsultasi terlebih dahulu sebelum melakukan order.
+        </p>
+
+
+        <div class="links">
+
+
+          <a
+            class="link"
+            href="https://wa.me/62895622710513?text=Halo%20FrogzzShop,%20saya%20ingin%20konsultasi."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <i class="fa-brands fa-whatsapp"></i>
+
+            <span>
+
+              <strong>
+                Konsultasi via WhatsApp
+              </strong>
+
+              <small>
+                Diskusikan kebutuhanmu terlebih dahulu
+              </small>
+
+            </span>
+
+          </a>
+
+
+          <a
+            class="link"
+            href="#produk"
+          >
+
+            <i class="fa-solid fa-store"></i>
+
+            <span>
+
+              <strong>
+                Lihat Semua Produk
+              </strong>
+
+              <small>
+                Kembali ke katalog
+              </small>
+
+            </span>
+
+          </a>
+
+
+          <a
+            class="link"
+            href="#faq"
+          >
+
+            <i class="fa-regular fa-circle-question"></i>
+
+            <span>
+
+              <strong>
+                Baca FAQ
+              </strong>
+
+              <small>
+                Temukan jawaban cepat
+              </small>
+
+            </span>
+
+          </a>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <div class="container">
+
+
+    <div class="footer-top">
+
+
+      <div class="footer-brand">
+
+
+        <a
+          href="#home"
+          class="brand"
+        >
+
+          <span class="logo">
+
+            <i class="fa-solid fa-bolt"></i>
+
+          </span>
+
+          <span>
+            FrogzzShop
+          </span>
+
+        </a>
+
+
+        <p>
+          Digital store modern untuk jasa dan produk digital
+          dengan pengalaman yang simple, clean, dan profesional.
+        </p>
+
+
+      </div>
+
+
+      <div class="footer-links">
+
+
+        <div>
+
+          <h4>
+            Navigation
+          </h4>
+
+          <a href="#home">
+            Home
+          </a>
+
+          <a href="#produk">
+            Produk
+          </a>
+
+          <a href="#tentang">
+            Tentang
+          </a>
+
+          <a href="#faq">
+            FAQ
+          </a>
+
+        </div>
+
+
+        <div>
+
+          <h4>
+            Legal
+          </h4>
+
+          <a href="#legal">
+            Terms & Conditions
+          </a>
+
+          <a href="#legal">
+            Privacy Policy
+          </a>
+
+          <a href="#kontak">
+            Contact
+          </a>
+
+        </div>
+
+
+        <div>
+
+          <h4>
+            Support
+          </h4>
+
+
+          <a
+            id="footerWA"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WhatsApp
+          </a>
+
+
+          <a
+            id="footerDC"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Discord
+          </a>
+
+
+          <a
+            href="https://wa.me/62895622710513?text=Halo%20FrogzzShop,%20saya%20ingin%20konsultasi."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Konsultasi
+          </a>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+    <div class="copyright">
+
+
+      <span>
+        © <span id="year"></span>
+        FrogzzShop. All rights reserved.
+      </span>
+
+
+      <span>
+
+        Made with
+
+        <i
+          class="fa-solid fa-heart"
+          style="color:var(--p)"
+        ></i>
+
+        for digital community.
+
+      </span>
+
+
+    </div>
+
+
+  </div>
+
+</footer>
+
+
+<div
+  class="toast"
+  id="toast"
+  role="status"
+  aria-live="polite"
+>
+  Pembayaran QRIS sedang diproses.
+</div>
+
+
+<script>
+
+/* =========================================================
+   FROGZZSHOP — PRODUK
+   ========================================================= */
+
+const products = [
+  {
+    icon:"fa-code",
+    name:"Jasa Developer",
+    description:"Layanan developer SA:MP dan kebutuhan pengembangan server. Hubungi kami untuk melihat detail layanan dan melakukan pemesanan.",
+    price:5000,
+    href:"https://discord.gg/GRkGwWE4C5"
+  },
+  {
+    icon:"fa-gamepad",
+    name:"Jasa Review",
+    description:"Layanan review dan publikasi untuk membantu memperkenalkan server SA:MP kepada komunitas.",
+    price:10000,
+    href:"https://discord.gg/GRkGwWE4C5"
+  },
+  {
+    icon:"fa-server",
+    name:"Server & Hosting",
+    description:"Layanan server, hosting, dan kebutuhan project digital untuk berbagai kebutuhan.",
+    price:20000,
+    href:"products/samphosting.html"
+  },
+  {
+    icon:"fa-palette",
+    name:"Design & UI",
+    description:"Layanan desain logo, banner, UI, dan berbagai kebutuhan visual untuk project digital.",
+    price:5000,
+    href:"https://discord.gg/GRkGwWE4C5"
+  },
+  {
+    icon:"fa-bolt",
+    name:"Server Pack",
+    description:"Paket untuk membantu kamu membangun server dari awal dengan kebutuhan yang disesuaikan dengan project.",
+    price:30000,
+    href:"products/serverpack.html"
+  },
+  {
+    icon:"fa-server",
+    name:"Open-MP",
+    description:"Layanan dan kebutuhan server Open-MP untuk kamu yang ingin membangun atau mengembangkan project multiplayer.",
+    price:20000,
+    href:"products/open-mp.html"
+  },
+  {
+    icon:"fa-box-open",
+    name:"Produk Tes",
+    description:"Produk khusus untuk menguji alur pembayaran QRIS otomatis FrogzzShop.",
+    price:10,
+    href:"https://discord.gg/GRkGwWE4C5"
+  },
+  {
+    icon:"fa-headset",
+    name:"Custom Request",
+    description:"Punya kebutuhan khusus? Hubungi admin untuk menentukan harga sebelum order.",
+    price:null,
+    href:"https://discord.gg/GRkGwWE4C5",
+    direct:true
+  }
+]
+
+
+/* =========================================================
+   KONTAK
+   ========================================================= */
+
+const CONTACT = {
+
+  whatsapp:
+    "https://wa.me/62895622710513",
+
+  discord:
+    "https://discord.gg/GRkGwWE4C5",
+
+  channel:
+    "https://whatsapp.com/channel/yourchannel"
+
+};
+
+
+/* =========================================================
+   RENDER PRODUK
+   ========================================================= */
+
+const list =
+  document.getElementById("productList");
+
+
+list.innerHTML = products.map((p)=>`
+
+  <article class="product">
+
+    <div class="icon">
+
+      <i class="fa-solid ${p.icon}"></i>
+
+    </div>
+
+
+    <h3>
+      ${p.name}
+    </h3>
+
+
+    <p>
+      ${p.description}
+    </p>
+
+
+    <div class="product-bottom">
+
+
+      <div class="price">
+        <span>
+          ${p.price ? `Rp${new Intl.NumberFormat("id-ID").format(p.price)}` : "Request"}
+        </span>
+      </div>
+
+      <a
+        class="buy ${p.direct ? "direct" : ""}"
+        ${p.direct ? `href="${p.href}" target="_blank" rel="noopener noreferrer"` : `href="#" data-payment-order data-product="${p.name}" data-price="${p.price}" data-redirect="${new URL(p.href, location.href).href}"`}
+        aria-label="Pesan ${p.name}"
+      >
+        ${p.direct ? "Hubungi" : "Pesan"}
+        <i class="fa-solid ${p.direct ? "fa-arrow-up-right-from-square" : "fa-qrcode"}"></i>
+      </a>
+
+
+    </div>
+
+
+  </article>
+
+`).join("");
+
+
+/* =========================================================
+   SET CONTACT LINKS
+   ========================================================= */
+
+document.getElementById("waLink").href =
+  CONTACT.whatsapp;
+
+
+document.getElementById("dcLink").href =
+  CONTACT.discord;
+
+
+document.getElementById("channelLink").href =
+  CONTACT.channel;
+
+
+document.getElementById("footerWA").href =
+  CONTACT.whatsapp;
+
+
+document.getElementById("footerDC").href =
+  CONTACT.discord;
+
+
+/* =========================================================
+   YEAR
+   ========================================================= */
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+
+/* =========================================================
+   HEADER SCROLL
+   ========================================================= */
+
+const header =
+  document.getElementById("header");
+
+
+window.addEventListener(
+  "scroll",
+  ()=>{
+
+    header.classList.toggle(
+      "scrolled",
+      window.scrollY > 20
+    );
+
+  },
+  {passive:true}
+);
+
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+
+const menu =
+  document.getElementById("menu");
+
+
+const nav =
+  document.getElementById("nav");
+
+
+menu.addEventListener(
+  "click",
+  ()=>{
+
+    const open =
+      nav.classList.toggle("open");
+
+    menu.setAttribute(
+      "aria-expanded",
+      open
+    );
+
+  }
+);
+
+
+nav.querySelectorAll("a").forEach(
+  a=>{
+
+    a.addEventListener(
+      "click",
+      ()=>{
+
+        nav.classList.remove("open");
+
+        menu.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   FAQ ACCORDION
+   ========================================================= */
+
+document
+  .querySelectorAll(".faq-item")
+  .forEach(item=>{
+
+    item
+      .querySelector(".q")
+      .addEventListener(
+        "click",
+        ()=>{
+
+          document
+            .querySelectorAll(".faq-item")
+            .forEach(x=>{
+
+              if(x !== item){
+
+                x.classList.remove(
+                  "active"
+                );
+
+              }
+
+            });
+
+
+          item.classList.toggle(
+            "active"
+          );
+
+        }
+      );
+
+  });
+
+
+
+
+
+<script src="payment.js"></script>
+</body>
+</html>
