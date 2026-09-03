@@ -85,6 +85,7 @@
           <div class="fzpay-invoice-row"><span>Harga</span><strong id="fzpay-paid-base">-</strong></div>
           <div class="fzpay-invoice-row"><span>Total dibayar</span><strong id="fzpay-paid-total">-</strong></div>
           <div class="fzpay-invoice-row"><span>ID TRX Depo</span><strong id="fzpay-paid-trx" class="fzpay-trx">-</strong></div>
+          <div class="fzpay-invoice-row"><span>Invoice FrogzzShop</span><strong id="fzpay-paid-frog-invoice">-</strong></div>
           <div class="fzpay-invoice-row"><span>Invoice XS-Pedia</span><strong id="fzpay-paid-invoice">-</strong></div>
           <div class="fzpay-invoice-row"><span>Waktu</span><strong id="fzpay-paid-time">-</strong></div>
         </div>
@@ -116,6 +117,7 @@
     paidBase: overlay.querySelector('#fzpay-paid-base'),
     paidTotal: overlay.querySelector('#fzpay-paid-total'),
     paidTrx: overlay.querySelector('#fzpay-paid-trx'),
+    paidFrogInvoice: overlay.querySelector('#fzpay-paid-frog-invoice'),
     paidInvoice: overlay.querySelector('#fzpay-paid-invoice'),
     paidTime: overlay.querySelector('#fzpay-paid-time'),
     copy: overlay.querySelector('#fzpay-copy'),
@@ -203,6 +205,9 @@
 
     const paidAmount = Number(detail.total_amount || detail.paid_amount || detail.amount || current.totalAmount || current.amount);
     const invoice = String(detail.invoice || current.invoice || '-');
+    const invoiceId = String(detail.invoice_id || current.invoiceId || '');
+    current.invoiceId = invoiceId;
+
     const paidAt = new Date().toLocaleString('id-ID', {
       timeZone: 'Asia/Jakarta', dateStyle: 'medium', timeStyle: 'medium'
     });
@@ -215,6 +220,7 @@
     el.paidBase.textContent = money(current.amount);
     el.paidTotal.textContent = money(paidAmount);
     el.paidTrx.textContent = current.id;
+    el.paidFrogInvoice.textContent = invoiceId || '-';
     el.paidInvoice.textContent = invoice || '-';
     el.paidTime.textContent = paidAt;
     el.copy.dataset.trx = current.id;
@@ -226,18 +232,9 @@
       amount: current.amount,
       total: paidAmount,
       invoice,
+      invoiceId,
       paidAt
     });
-
-    // Kirim notifikasi Telegram tanpa menahan tampilan invoice / redirect.
-    notifyTelegram({
-      token: detail.notify_token,
-      id: current.id,
-      invoice,
-      product: current.product,
-      amount: current.amount,
-      total: paidAmount
-    }).catch(() => {});
 
     // Redirect otomatis setelah invoice sukses sempat terbaca.
     redirectTimer = setTimeout(() => {
