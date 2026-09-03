@@ -1,8 +1,8 @@
 {
   "name": "frogzzshop-qris",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "FrogzzShop static site with XS-Pedia QRIS payment flow for Vercel",
+  "description": "FrogzzShop static site with XS-Pedia QRIS payment flow and Telegram owner notifications for Vercel",
   "engines": {
     "node": ">=20"
   }

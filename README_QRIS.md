@@ -29,3 +29,12 @@ Homepage sudah ditambahkan produk **Produk Tes** seharga **Rp10** untuk menguji 
 ## Catatan redirect
 
 Setelah pembayaran berhasil, frontend akan mengarahkan user ke Discord atau halaman tujuan yang disimpan pada tombol order. Tombol support/footer yang bukan order tidak dipaksa masuk pembayaran.
+
+## Telegram Owner Notification
+Tambahkan environment variable berikut di Vercel:
+
+- `TELEGRAM_BOT_TOKEN` = token bot dari @BotFather
+- `TELEGRAM_OWNER_CHAT_ID` = ID chat owner / grup tujuan notifikasi
+- `FROGZZ_NOTIFY_SECRET` = secret acak panjang (disarankan 32+ karakter). Bila kosong, sistem memakai `XS_PEDIA_APIKEY` sebagai fallback.
+
+Setelah pembayaran berstatus sukses, website menampilkan invoice sukses, menyimpan ID TRX Depo di localStorage, lalu mengirim invoice ringkas ke Telegram owner melalui Telegram Bot API. Bot menggunakan endpoint HTTPS Bot API `sendMessage`. Pastikan owner sudah memulai chat dengan bot atau bot memiliki akses ke grup tujuan.
