@@ -2467,7 +2467,8 @@ const products = [
     description:"Layanan server, hosting, dan kebutuhan project digital untuk berbagai kebutuhan.",
     price:20000,
     displayPrice:"START Rp 20.000",
-    href:"products/samphosting.html"
+    href:"products/samphosting.html",
+    page:true
   },
 
   {
@@ -2485,7 +2486,8 @@ const products = [
     description:"Paket untuk membantu kamu membangun server dari awal dengan kebutuhan yang disesuaikan dengan project.",
     price:30000,
     displayPrice:"START Rp 30.000",
-    href:"products/serverpack.html"
+    href:"products/serverpack.html",
+    page:true
   },
 
   {
@@ -2494,18 +2496,10 @@ const products = [
     description:"Layanan dan kebutuhan server Open-MP untuk kamu yang ingin membangun atau mengembangkan project multiplayer.",
     price:20000,
     displayPrice:"START Rp 20.000",
-    href:"products/open-mp.html"
+    href:"products/open-mp.html",
+    page:true
   },
 
-  {
-    icon:"fa-vial",
-    name:"Produk Tes",
-    description:"Produk Rp10 khusus untuk menguji alur pembayaran QRIS otomatis FrogzzShop.",
-    price:10,
-    displayPrice:"Rp 10",
-    href:"https://discord.gg/GRkGwWE4C5",
-    test:true
-  },
 
   {
     icon:"fa-box-open",
@@ -2578,11 +2572,11 @@ list.innerHTML = products.map((p)=>`
 
       <a
         class="buy ${p.direct ? "direct" : ""}"
-        ${p.direct ? `href="${p.href}" target="_blank" rel="noopener noreferrer"` : `href="#" data-payment-order data-product="${p.name}" data-price="${p.price}" data-redirect="${new URL(p.href, location.href).href}"`}
-        aria-label="Pesan ${p.name}"
+        href="${p.href}" ${p.direct ? 'target="_blank" rel="noopener noreferrer"' : ''}
+        aria-label="${p.page ? 'Lihat ' : 'Hubungi '}${p.name}"
       >
-        ${p.direct ? "Hubungi" : "Pesan"}
-        <i class="fa-solid ${p.direct ? "fa-arrow-up-right-from-square" : "fa-qrcode"}"></i>
+        ${p.page ? "Lihat Produk" : "Hubungi"}
+        <i class="fa-solid ${p.page ? "fa-arrow-right" : "fa-arrow-up-right-from-square"}"></i>
       </a>
 
 
@@ -2741,7 +2735,6 @@ document
 
 </script>
 
-<script src="payment.js"></script>
 
 </body>
 </html>

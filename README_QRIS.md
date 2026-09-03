@@ -15,3 +15,9 @@ Alur pembayaran:
 Untuk XS-Pedia, isi `XS_PEDIA_APIKEY` di Vercel atau `.env` lokal.
 
 > PENTING: `api/config.js` dan `.env` sekarang mengandung credential Telegram. Jangan upload project ini ke repository publik. Karena token bot sudah pernah dibagikan di chat, sebaiknya token dirotasi lewat BotFather setelah deployment/testing selesai.
+
+## Struktur Order Terbaru
+- `index.html` hanya menampilkan katalog dan mengarahkan ke halaman produk.
+- `products/samphosting.html` menangani order + QRIS termasuk Produk Tes Rp10.
+- `products/open-mp.html` menangani order + QRIS termasuk Produk Tes Rp10.
+- `payment.js` tidak lagi dimuat oleh `index.html`.
