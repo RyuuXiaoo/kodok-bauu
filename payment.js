@@ -3,8 +3,7 @@
 
   const API = {
     create: '/api/create-payment',
-    status: '/api/check-payment',
-    telegram: '/api/notify-telegram'
+    status: '/api/check-payment'
   };
 
   const money = (value) => new Intl.NumberFormat('id-ID', {
@@ -181,22 +180,6 @@
       console.warn('Gagal menyimpan transaksi lokal:', error);
     }
   };
-
-  async function notifyTelegram(payload) {
-    try {
-      const response = await fetch(API.telegram, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok || data.success !== true) {
-        console.warn('Notifikasi Telegram gagal:', data.message || response.status);
-      }
-    } catch (error) {
-      console.warn('Notifikasi Telegram tidak terkirim:', error);
-    }
-  }
 
   async function markPaid(detail) {
     if (!current || completed) return;
