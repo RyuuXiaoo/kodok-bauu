@@ -680,6 +680,14 @@ footer{
   }
 }
 
+
+/* ================= MOBILE MENU FIX ================= */
+@media(max-width:900px){
+  header, .header, .nav{position:relative;z-index:1000;}
+  .menu{display:flex !important;align-items:center;justify-content:center;position:relative;z-index:1002;}
+  nav.open{z-index:1001;}
+}
+
 </style>
 </head>
 
@@ -711,7 +719,7 @@ footer{
 
 </nav>
 
-<button class="menu" id="menu">
+<button class="menu" id="menu" type="button" aria-label="Buka menu" aria-expanded="false">
 <i class="fa-solid fa-bars"></i>
 </button>
 
@@ -762,11 +770,11 @@ Lihat Paket
 
 </a>
 
-<a href="#order" class="btn btn-light">
+<a href="#standard" class="btn btn-light">
 
-<i class="fa-brands fa-discord"></i>
+<i class="fa-solid fa-qrcode"></i>
 
-Order via Discord
+Pilih Paket & Bayar
 
 </a>
 
@@ -1491,6 +1499,22 @@ pengelolaan server SA:MP kamu.
 
 <!-- ORDER -->
 
+
+<!-- PRODUK TES QRIS -->
+<article class="plan">
+  <div class="plan-top"><div><div class="plan-code">TEST • QRIS</div><h3>Produk Tes</h3></div></div>
+  <div class="plan-price"><strong>Rp10</strong><span> untuk pengujian</span></div>
+  <div class="specs">
+    <div class="spec"><span class="spec-label"><i class="fa-solid fa-vial"></i> Fungsi</span><span class="spec-value">Tes pembayaran QRIS</span></div>
+    <div class="spec"><span class="spec-label"><i class="fa-solid fa-bolt"></i> Status</span><span class="spec-value">Otomatis</span></div>
+    <div class="spec"><span class="spec-label"><i class="fa-solid fa-receipt"></i> Invoice</span><span class="spec-value">FrogzzShop</span></div>
+  </div>
+  <a class="plan-order" href="#" data-payment-order data-product="Produk Tes" data-price="10" data-redirect="https://discord.gg/GRkGwWE4C5">
+    <i class="fa-solid fa-qrcode"></i>
+    Bayar & Order
+  </a>
+</article>
+
 <section class="order-section" id="order">
 
 <div class="container">
@@ -1513,13 +1537,11 @@ atau melakukan konsultasi sebelum memilih layanan.
 
 <a
 class="discord-order"
-href="https://discord.gg/GRkGwWE4C5"
-target="_blank"
-rel="noopener">
+href="#standard">
 
-<i class="fa-brands fa-discord"></i>
+<i class="fa-solid fa-qrcode"></i>
 
-Buat Ticket di Discord
+Pilih Paket & Bayar
 
 </a>
 

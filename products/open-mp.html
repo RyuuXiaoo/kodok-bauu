@@ -682,6 +682,14 @@ footer{
   }
 }
 
+
+/* ================= MOBILE MENU FIX ================= */
+@media(max-width:900px){
+  header, .header, .nav{position:relative;z-index:1000;}
+  .menu{display:flex !important;align-items:center;justify-content:center;position:relative;z-index:1002;}
+  nav.open{z-index:1001;}
+}
+
 </style>
 </head>
 
@@ -732,7 +740,7 @@ Order
 </nav>
 
 
-<button class="menu" id="menu">
+<button class="menu" id="menu" type="button" aria-label="Buka menu" aria-expanded="false">
 
 <i class="fa-solid fa-bars"></i>
 
@@ -790,11 +798,11 @@ Lihat Paket
 </a>
 
 
-<a href="#order" class="btn btn-light">
+<a href="#standard" class="btn btn-light">
 
-<i class="fa-brands fa-discord"></i>
+<i class="fa-solid fa-qrcode"></i>
 
-Order via Discord
+Pilih Paket & Bayar
 
 </a>
 
@@ -1779,6 +1787,22 @@ pengelolaan server kamu.
 
 <!-- ORDER -->
 
+
+<!-- PRODUK TES QRIS -->
+<article class="plan">
+  <div class="plan-top"><div><div class="plan-code">TEST • QRIS</div><h3>Produk Tes</h3></div></div>
+  <div class="plan-price"><strong>Rp10</strong><span> untuk pengujian</span></div>
+  <div class="specs">
+    <div class="spec"><span class="spec-label"><i class="fa-solid fa-vial"></i> Fungsi</span><span class="spec-value">Tes pembayaran QRIS</span></div>
+    <div class="spec"><span class="spec-label"><i class="fa-solid fa-bolt"></i> Status</span><span class="spec-value">Otomatis</span></div>
+    <div class="spec"><span class="spec-label"><i class="fa-solid fa-receipt"></i> Invoice</span><span class="spec-value">FrogzzShop</span></div>
+  </div>
+  <a class="plan-order" href="#" data-payment-order data-product="Produk Tes" data-price="10" data-redirect="https://discord.gg/GRkGwWE4C5">
+    <i class="fa-solid fa-qrcode"></i>
+    Bayar & Order
+  </a>
+</article>
+
 <section class="order-section" id="order">
 
 <div class="container">
@@ -1806,14 +1830,12 @@ sebelum memilih layanan.
 
 <a
 class="discord-order"
-href="https://discord.gg/GRkGwWE4C5"
-target="_blank"
-rel="noopener"
+href="#standard"
 >
 
-<i class="fa-brands fa-discord"></i>
+<i class="fa-solid fa-qrcode"></i>
 
-Buat Ticket di Discord
+Pilih Paket & Bayar
 
 </a>
 
@@ -1935,27 +1957,44 @@ window.scrollY > 20
 
 /* ================= MOBILE MENU ================= */
 
-const menu =
-document.getElementById("menu");
+const menu = document.getElementById("menu");
+const nav = document.getElementById("nav");
+const menuIcon = menu ? menu.querySelector("i") : null;
 
-const nav =
-document.getElementById("nav");
+function closeMobileMenu(){
+  nav.classList.remove("open");
+  menu.setAttribute("aria-expanded", "false");
+  menu.setAttribute("aria-label", "Buka menu");
+  if (menuIcon) {
+    menuIcon.classList.remove("fa-xmark");
+    menuIcon.classList.add("fa-bars");
+  }
+}
 
-menu.addEventListener("click",()=>{
+function toggleMobileMenu(){
+  if (!nav.classList.contains("open")) {
+    nav.classList.add("open");
+    menu.setAttribute("aria-expanded", "true");
+    menu.setAttribute("aria-label", "Tutup menu");
+    if (menuIcon) {
+      menuIcon.classList.remove("fa-bars");
+      menuIcon.classList.add("fa-xmark");
+    }
+  } else {
+    closeMobileMenu();
+  }
+}
 
-nav.classList.toggle("open");
-
+menu.addEventListener("click", toggleMobileMenu);
+nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMobileMenu));
+document.addEventListener("click", event => {
+  if (nav.classList.contains("open") && !nav.contains(event.target) && !menu.contains(event.target)) closeMobileMenu();
 });
-
-
-nav.querySelectorAll("a").forEach(a=>{
-
-a.addEventListener("click",()=>{
-
-nav.classList.remove("open");
-
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeMobileMenu();
 });
-
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 900) closeMobileMenu();
 });
 
 

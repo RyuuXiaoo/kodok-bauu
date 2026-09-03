@@ -501,6 +501,14 @@ footer{
         flex-direction:column;
     }
 }
+
+/* ================= MOBILE MENU FIX ================= */
+@media(max-width:900px){
+  header, .header, .nav{position:relative;z-index:1000;}
+  .menu{display:flex !important;align-items:center;justify-content:center;position:relative;z-index:1002;}
+  nav.open{z-index:1001;}
+}
+
 </style>
 </head>
 
@@ -554,7 +562,7 @@ footer{
 
 
 <!-- PACKAGES -->
-<section>
+<section id="packages">
 
 <div class="container">
 
@@ -802,12 +810,11 @@ Bayar & Order
 
 <a
     class="discord"
-    target="_blank"
-    href="https://discord.gg/GRkGwWE4C5">
+    href="#packages">
 
-    <i class="fa-brands fa-discord"></i>
+    <i class="fa-solid fa-qrcode"></i>
 
-    Order via Discord
+    Pilih Paket & Bayar
 
 </a>
 
