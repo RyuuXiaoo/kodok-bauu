@@ -1,6 +1,6 @@
 // Konfigurasi fallback untuk deployment yang tidak memasang Environment Variables.
-// PERINGATAN: file ini menyimpan credential secara langsung. Jangan upload ke repo publik.
+// Isi FONNTE_API_TOKEN dengan token API Fonnte milik Anda sebelum deployment.
 module.exports = {
-  TELEGRAM_BOT_TOKEN: '8595833104:AAHLVtCyexJ86oitDcCxXXpqO9k-C-l0avU',
-  TELEGRAM_OWNER_CHAT_ID: '7058216834'
+  FONNTE_API_TOKEN: '',
+  FONNTE_OWNER_NUMBERS: '6285143469870,6283849126096'
 };

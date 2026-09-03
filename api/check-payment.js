@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const { sendTelegramNotification } = require('./notify-telegram');
+const { sendWhatsAppNotification } = require('./notify-whatsapp');
 
 function makeToken(payload, secret) {
   const encoded = Buffer.from(JSON.stringify(payload), 'utf8').toString('base64url');
@@ -79,7 +79,7 @@ async function handler(req, res) {
 
       // Notifikasi dikirim dari server, bukan dari browser, agar tidak gagal saat browser redirect.
       try {
-        const telegram = await sendTelegramNotification({
+        const whatsapp = await sendWhatsAppNotification({
           id,
           product,
           amount,
@@ -88,11 +88,12 @@ async function handler(req, res) {
           invoiceId,
           paidAt
         });
-        responseData.telegram_notified = Boolean(telegram.success);
-        if (!telegram.success) responseData.telegram_error = telegram.message;
-      } catch (telegramError) {
-        responseData.telegram_notified = false;
-        responseData.telegram_error = telegramError?.message || 'Telegram notification error';
+        responseData.whatsapp_notified = Boolean(whatsapp.success);
+        if (whatsapp.success) responseData.whatsapp_owners = whatsapp.owners;
+        if (!whatsapp.success) responseData.whatsapp_error = whatsapp.message;
+      } catch (whatsappError) {
+        responseData.whatsapp_notified = false;
+        responseData.whatsapp_error = whatsappError?.message || 'WhatsApp notification error';
       }
     }
 
