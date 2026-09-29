@@ -28,11 +28,9 @@ async function handler(req, res) {
     const id = String(Array.isArray(rawId) ? rawId[0] : (rawId || '')).trim();
     if (!id) return res.status(400).json({ success: false, message: 'ID transaksi wajib diisi.' });
 
-    // Penyesuaian ke endpoint Express backend milikmu
+    // ================= DISESUAIKAN: Nembak ke /deposit/status =================
     const params = new URLSearchParams({ id });
-    const targetUrl = baseUrl.endsWith('/api') 
-      ? `${baseUrl}/deposit/status?${params.toString()}`
-      : `${baseUrl}/api/deposit/status?${params.toString()}`;
+    const targetUrl = `${baseUrl}/deposit/status?${params.toString()}`;
 
     const response = await fetch(targetUrl, {
       method: 'GET',
@@ -48,7 +46,7 @@ async function handler(req, res) {
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok || data.success !== true) {
-      return res.status(502).json({
+      return res.status(response.status !== 200 ? response.status : 400).json({
         success: false,
         message: data.message || `XS-Pedia gagal mengecek status (HTTP ${response.status}).`
       });
@@ -89,7 +87,7 @@ async function handler(req, res) {
         timeStyle: 'medium'
       });
 
-      // ================= NOTIFIKASI WHATSAPP KETIKA SUKSES =================
+      // ================= NOTIFIKASI WHATSAPP =================
       try {
         const whatsapp = await sendWhatsAppNotification({
           id,
