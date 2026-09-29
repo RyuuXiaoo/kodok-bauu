@@ -32,11 +32,15 @@ async function handler(req, res) {
       return res.status(400).json({ success: false, message: 'Link tujuan order tidak valid.' });
     }
 
-    // ================= HIT ENDPOINT CREATE DEPOSIT =================
+    // ================= DIBERBAIKI: Tambahkan prefix /api jika Express kamu menggunakannya =================
     const params = new URLSearchParams({ nominal: String(amount) });
     
-    // Header disesuaikan dengan validateApiKey (x-api-key / X-APIKEY)
-    const response = await fetch(`${baseUrl}/deposit/create?${params.toString()}`, {
+    // Jika di Express kamu pakai /api/deposit/create
+    const targetUrl = baseUrl.endsWith('/api') 
+      ? `${baseUrl}/deposit/create?${params.toString()}`
+      : `${baseUrl}/api/deposit/create?${params.toString()}`;
+
+    const response = await fetch(targetUrl, {
       method: 'GET',
       headers: { 
         'x-api-key': apiKey,
@@ -45,6 +49,7 @@ async function handler(req, res) {
       },
       cache: 'no-store'
     });
+    
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok || !data.success) {
@@ -56,8 +61,6 @@ async function handler(req, res) {
 
     const qris = data.data || {};
     const transactionId = String(qris.id || qris.trx_id || qris.reference_id || '').trim();
-    
-    // Ambil gambar composite QRIS atau fallback ke qr_image_raw
     const qrImageUrl = qris.qr_image || qris.qr_image_combined || qris.qr_image_raw || '';
 
     if (!transactionId || !qrImageUrl) {
