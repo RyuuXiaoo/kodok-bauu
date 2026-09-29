@@ -28,10 +28,17 @@ async function handler(req, res) {
     const id = String(Array.isArray(rawId) ? rawId[0] : (rawId || '')).trim();
     if (!id) return res.status(400).json({ success: false, message: 'ID transaksi wajib diisi.' });
 
-    const url = `${baseUrl}/h2h/deposit/status?${new URLSearchParams({ id }).toString()}`;
+    // ================= HIT ENDPOINT CHECK STATUS =================
+    // Menyesuaikan ke /deposit/status tanpa prefix /h2h
+    const url = `${baseUrl}/deposit/status?${new URLSearchParams({ id }).toString()}`;
     const response = await fetch(url, {
       method: 'GET',
-      headers: { 'X-APIKEY': apiKey, 'Accept': 'application/json', 'Cache-Control': 'no-cache' },
+      headers: { 
+        'x-api-key': apiKey,
+        'X-APIKEY': apiKey, 
+        'Accept': 'application/json', 
+        'Cache-Control': 'no-cache' 
+      },
       cache: 'no-store'
     });
     const data = await response.json().catch(() => ({}));
@@ -44,18 +51,19 @@ async function handler(req, res) {
     }
 
     const detail = data.data || {};
-    const status = String(detail.status || detail.transaction_status || detail.payment_status || 'pending').trim().toLowerCase();
+    const status = String(detail.status || detail.provider_status || 'pending').trim().toLowerCase();
+    
     const responseData = {
       ...detail,
-      id: String(detail.id || detail.invoice || detail.transaction_id || id),
+      id: String(detail.id || detail.trx_id || id),
       status
     };
 
     if (['success', 'paid', 'completed', 'berhasil'].includes(status)) {
       const product = String(req.query?.product || 'Order').slice(0, 120);
-      const amount = Number(req.query?.amount || detail.amount || detail.nominal || 0);
-      const total = Number(detail.total_amount || detail.paid_amount || detail.amount || amount);
-      const invoice = String(detail.invoice || detail.reference || '').slice(0, 120);
+      const amount = Number(req.query?.amount || detail.nominal || detail.amount || 0);
+      const total = Number(detail.total_amount || detail.provider_amount || amount);
+      const invoice = String(detail.reference_id || detail.invoice || '').slice(0, 120);
       const invoiceId = String(req.query?.invoice_id || makeInvoiceId(id)).slice(0, 120);
       const secret = process.env.FROGZZ_NOTIFY_SECRET || apiKey;
 
@@ -77,7 +85,7 @@ async function handler(req, res) {
         timeStyle: 'medium'
       });
 
-      // Notifikasi dikirim dari server, bukan dari browser, agar tidak gagal saat browser redirect.
+      // Notifikasi dikirim dari server
       try {
         const whatsapp = await sendWhatsAppNotification({
           id,
