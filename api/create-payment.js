@@ -32,10 +32,17 @@ async function handler(req, res) {
       return res.status(400).json({ success: false, message: 'Link tujuan order tidak valid.' });
     }
 
-    const params = new URLSearchParams({ nominal: String(amount), metode: 'QRIS' });
-    const response = await fetch(`${baseUrl}/h2h/deposit/create?${params.toString()}`, {
+    // ================= HIT ENDPOINT CREATE DEPOSIT =================
+    const params = new URLSearchParams({ nominal: String(amount) });
+    
+    // Header disesuaikan dengan validateApiKey (x-api-key / X-APIKEY)
+    const response = await fetch(`${baseUrl}/deposit/create?${params.toString()}`, {
       method: 'GET',
-      headers: { 'X-APIKEY': apiKey, 'Accept': 'application/json' },
+      headers: { 
+        'x-api-key': apiKey,
+        'X-APIKEY': apiKey, 
+        'Accept': 'application/json' 
+      },
       cache: 'no-store'
     });
     const data = await response.json().catch(() => ({}));
@@ -48,24 +55,31 @@ async function handler(req, res) {
     }
 
     const qris = data.data || {};
-    const transactionId = String(qris.id || qris.invoice || qris.transaction_id || '').trim();
-    if (!transactionId || !qris.qr_image) {
+    const transactionId = String(qris.id || qris.trx_id || qris.reference_id || '').trim();
+    
+    // Ambil gambar composite QRIS atau fallback ke qr_image_raw
+    const qrImageUrl = qris.qr_image || qris.qr_image_combined || qris.qr_image_raw || '';
+
+    if (!transactionId || !qrImageUrl) {
       return res.status(502).json({ success: false, message: 'Respons XS-Pedia tidak berisi ID transaksi atau QR image.' });
     }
 
-    const totalAmount = Number(qris.total_amount || qris.amount || amount);
+    const totalAmount = Number(qris.total_amount || amount);
     const expiresAt = qris.expires_at ? new Date(qris.expires_at).getTime() : Date.now() + 15 * 60 * 1000;
 
     return res.status(200).json({
       success: true,
       data: {
         id: transactionId,
-        invoice: qris.invoice || null,
+        trx_id: transactionId,
+        invoice: qris.reference_id || transactionId,
         product,
         amount,
         total_amount: totalAmount,
+        kode_unik: Number(qris.kode_unik || qris.tambahan || 0),
         fee: Number(qris.fee || Math.max(0, totalAmount - amount)),
-        qr_image: qris.qr_image,
+        qr_image: qrImageUrl,
+        qris_string: qris.qris_string || '',
         redirect_url: redirectUrl,
         expires_at: expiresAt
       }
@@ -75,6 +89,5 @@ async function handler(req, res) {
     return res.status(500).json({ success: false, message: 'Terjadi kesalahan saat membuat pembayaran.' });
   }
 }
-
 
 module.exports = handler;
