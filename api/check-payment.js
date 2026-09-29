@@ -28,10 +28,13 @@ async function handler(req, res) {
     const id = String(Array.isArray(rawId) ? rawId[0] : (rawId || '')).trim();
     if (!id) return res.status(400).json({ success: false, message: 'ID transaksi wajib diisi.' });
 
-    // ================= HIT ENDPOINT CHECK STATUS =================
-    // Menyesuaikan ke /deposit/status tanpa prefix /h2h
-    const url = `${baseUrl}/deposit/status?${new URLSearchParams({ id }).toString()}`;
-    const response = await fetch(url, {
+    // Penyesuaian ke endpoint Express backend milikmu
+    const params = new URLSearchParams({ id });
+    const targetUrl = baseUrl.endsWith('/api') 
+      ? `${baseUrl}/deposit/status?${params.toString()}`
+      : `${baseUrl}/api/deposit/status?${params.toString()}`;
+
+    const response = await fetch(targetUrl, {
       method: 'GET',
       headers: { 
         'x-api-key': apiKey,
@@ -41,6 +44,7 @@ async function handler(req, res) {
       },
       cache: 'no-store'
     });
+
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok || data.success !== true) {
@@ -85,7 +89,7 @@ async function handler(req, res) {
         timeStyle: 'medium'
       });
 
-      // Notifikasi dikirim dari server
+      // ================= NOTIFIKASI WHATSAPP KETIKA SUKSES =================
       try {
         const whatsapp = await sendWhatsAppNotification({
           id,
