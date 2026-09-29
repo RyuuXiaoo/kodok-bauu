@@ -32,15 +32,14 @@ async function handler(req, res) {
       return res.status(400).json({ success: false, message: 'Link tujuan order tidak valid.' });
     }
 
-    // ================= DISESUAIKAN: Nembak ke /deposit/create =================
+    // ================= NEMBAK KE /deposit/create =================
     const params = new URLSearchParams({ nominal: String(amount) });
     const targetUrl = `${baseUrl}/deposit/create?${params.toString()}`;
 
     const response = await fetch(targetUrl, {
       method: 'GET',
       headers: { 
-        'x-api-key': apiKey,
-        'X-APIKEY': apiKey, 
+        'api-key': apiKey, // Disesuaikan dengan header validateApiKey kamu
         'Accept': 'application/json' 
       },
       cache: 'no-store'
@@ -64,7 +63,9 @@ async function handler(req, res) {
     }
 
     const totalAmount = Number(qris.total_amount || amount);
-    const expiresAt = qris.expires_at ? new Date(qris.expires_at).getTime() : Date.now() + 15 * 60 * 1000;
+    const expiresAt = qris.expires_at 
+      ? new Date(qris.expires_at).getTime() 
+      : (qris.created_at ? new Date(qris.created_at).getTime() + 15 * 60 * 1000 : Date.now() + 15 * 60 * 1000);
 
     return res.status(200).json({
       success: true,
