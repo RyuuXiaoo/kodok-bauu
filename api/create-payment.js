@@ -32,13 +32,9 @@ async function handler(req, res) {
       return res.status(400).json({ success: false, message: 'Link tujuan order tidak valid.' });
     }
 
-    // ================= DIBERBAIKI: Tambahkan prefix /api jika Express kamu menggunakannya =================
+    // ================= DISESUAIKAN: Nembak ke /deposit/create =================
     const params = new URLSearchParams({ nominal: String(amount) });
-    
-    // Jika di Express kamu pakai /api/deposit/create
-    const targetUrl = baseUrl.endsWith('/api') 
-      ? `${baseUrl}/deposit/create?${params.toString()}`
-      : `${baseUrl}/api/deposit/create?${params.toString()}`;
+    const targetUrl = `${baseUrl}/deposit/create?${params.toString()}`;
 
     const response = await fetch(targetUrl, {
       method: 'GET',
@@ -53,7 +49,7 @@ async function handler(req, res) {
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok || !data.success) {
-      return res.status(502).json({
+      return res.status(response.status !== 200 ? response.status : 400).json({
         success: false,
         message: data.message || `XS-Pedia mengembalikan HTTP ${response.status}`
       });
