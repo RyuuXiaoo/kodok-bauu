@@ -5,13 +5,19 @@ async function handler(req, res) {
 
   try {
     const apiKey = process.env.XS_PEDIA_APIKEY || process.env.XS_PEDIA_API_KEY;
-    const baseUrl = (process.env.XS_PEDIA_BASE_URL || 'https://xs-pedia.my.id').replace(/\/$/, '');
+    const baseUrl = (process.env.XS_PEDIA_BASE_URL || 'https://xspedia-payment.vercel.app').replace(/\/$/, '');
     
     if (!apiKey) {
       return res.status(500).json({ success: false, message: 'XS_PEDIA_APIKEY belum diatur di environment.' });
     }
 
-    const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+    let body = {};
+    try {
+      body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+    } catch {
+      return res.status(400).json({ success: false, message: 'Format Body Request JSON tidak valid.' });
+    }
+
     const amount = Number(body.amount);
     const product = String(body.product || 'Order').trim().slice(0, 120);
     const redirectUrl = String(body.redirectUrl || '').trim();
@@ -32,7 +38,7 @@ async function handler(req, res) {
       }
     }
 
-    // ================= NEMBAK KE /deposit/create =================
+    // ================= NEMBAK KE ENDPOINT /deposit/create =================
     const params = new URLSearchParams({ nominal: String(amount) });
     const targetUrl = `${baseUrl}/deposit/create?${params.toString()}`;
 
@@ -40,6 +46,7 @@ async function handler(req, res) {
       method: 'GET',
       headers: { 
         'api-key': apiKey,
+        'x-api-key': apiKey,
         'Accept': 'application/json',
         'User-Agent': 'Mozilla/5.0'
       },
@@ -52,7 +59,7 @@ async function handler(req, res) {
     try {
       data = JSON.parse(responseText);
     } catch (e) {
-      console.error('Response sanid/non-json:', responseText.slice(0, 200));
+      console.error('Response non-json dari XS-Pedia:', responseText.slice(0, 200));
       return res.status(502).json({
         success: false,
         message: `XS-Pedia mengembalikan HTTP ${response.status}`
@@ -81,6 +88,7 @@ async function handler(req, res) {
 
     return res.status(200).json({
       success: true,
+      message: 'Pembayaran berhasil dibuat.',
       data: {
         id: transactionId,
         trx_id: transactionId,
