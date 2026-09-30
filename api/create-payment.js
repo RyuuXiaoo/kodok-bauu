@@ -6,6 +6,7 @@ async function handler(req, res) {
   try {
     const apiKey = process.env.XS_PEDIA_APIKEY || process.env.XS_PEDIA_API_KEY;
     const baseUrl = (process.env.XS_PEDIA_BASE_URL || 'https://xs-pedia.my.id').replace(/\/$/, '');
+    
     if (!apiKey) {
       return res.status(500).json({ success: false, message: 'XS_PEDIA_APIKEY belum diatur di environment.' });
     }
@@ -19,17 +20,16 @@ async function handler(req, res) {
       return res.status(400).json({ success: false, message: 'Nominal minimal Rp10 dan harus berupa angka bulat.' });
     }
 
-    let parsedRedirect;
-    try {
-      parsedRedirect = new URL(redirectUrl);
-      if (!['http:', 'https:'].includes(parsedRedirect.protocol)) throw new Error('protocol');
-      const requestHost = String(req.headers?.host || '').split(':')[0].toLowerCase();
-      const redirectHost = parsedRedirect.hostname.toLowerCase();
-      const sameOrigin = requestHost && redirectHost === requestHost;
-      const isDiscord = redirectHost === 'discord.gg';
-      if (!sameOrigin && !isDiscord) throw new Error('host');
-    } catch {
-      return res.status(400).json({ success: false, message: 'Link tujuan order tidak valid.' });
+    // ================= VALIDASI REDIRECT URL =================
+    if (redirectUrl) {
+      try {
+        const parsedRedirect = new URL(redirectUrl);
+        if (!['http:', 'https:'].includes(parsedRedirect.protocol)) {
+          return res.status(400).json({ success: false, message: 'Protokol link tujuan tidak valid.' });
+        }
+      } catch {
+        return res.status(400).json({ success: false, message: 'Link tujuan order tidak valid.' });
+      }
     }
 
     // ================= NEMBAK KE /deposit/create =================
@@ -39,13 +39,25 @@ async function handler(req, res) {
     const response = await fetch(targetUrl, {
       method: 'GET',
       headers: { 
-        'api-key': apiKey, // Disesuaikan dengan header validateApiKey kamu
-        'Accept': 'application/json' 
+        'api-key': apiKey,
+        'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0'
       },
       cache: 'no-store'
     });
     
-    const data = await response.json().catch(() => ({}));
+    const responseText = await response.text();
+    let data = {};
+    
+    try {
+      data = JSON.parse(responseText);
+    } catch (e) {
+      console.error('Response sanid/non-json:', responseText.slice(0, 200));
+      return res.status(502).json({
+        success: false,
+        message: `XS-Pedia mengembalikan HTTP ${response.status}`
+      });
+    }
 
     if (!response.ok || !data.success) {
       return res.status(response.status !== 200 ? response.status : 400).json({
