@@ -45,7 +45,6 @@ async function handler(req, res) {
     const response = await fetch(targetUrl, {
       method: 'GET',
       headers: { 
-        'api-key': apiKey,
         'x-api-key': apiKey,
         'Accept': 'application/json',
         'User-Agent': 'Mozilla/5.0'
@@ -59,17 +58,17 @@ async function handler(req, res) {
     try {
       data = JSON.parse(responseText);
     } catch (e) {
-      console.error('Response non-json dari XS-Pedia:', responseText.slice(0, 200));
+      console.error('Response non-json dari Backend:', responseText.slice(0, 200));
       return res.status(502).json({
         success: false,
-        message: `XS-Pedia mengembalikan HTTP ${response.status}`
+        message: `Backend mengembalikan HTTP ${response.status}`
       });
     }
 
     if (!response.ok || !data.success) {
       return res.status(response.status !== 200 ? response.status : 400).json({
         success: false,
-        message: data.message || `XS-Pedia mengembalikan HTTP ${response.status}`
+        message: data.message || `Backend mengembalikan HTTP ${response.status}`
       });
     }
 
@@ -78,7 +77,7 @@ async function handler(req, res) {
     const qrImageUrl = qris.qr_image || qris.qr_image_combined || qris.qr_image_raw || '';
 
     if (!transactionId || !qrImageUrl) {
-      return res.status(502).json({ success: false, message: 'Respons XS-Pedia tidak berisi ID transaksi atau QR image.' });
+      return res.status(502).json({ success: false, message: 'Respons backend tidak berisi ID transaksi atau QR image.' });
     }
 
     const totalAmount = Number(qris.total_amount || amount);
