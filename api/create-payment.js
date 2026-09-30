@@ -38,14 +38,20 @@ async function handler(req, res) {
       }
     }
 
-    // ================= NEMBAK KE ENDPOINT /deposit/create =================
-    const params = new URLSearchParams({ nominal: String(amount) });
-    const targetUrl = `${baseUrl}/deposit/create?${params.toString()}`;
+    // ================= NEMBAK KE ENDPOINT /h2h/deposit/create (SESUAI DOKUMEN FOTO 2) =================
+    const params = new URLSearchParams({ 
+      nominal: String(amount),
+      metode: 'QRIS' 
+    });
+    
+    const targetUrl = `${baseUrl}/h2h/deposit/create?${params.toString()}`;
 
     const response = await fetch(targetUrl, {
       method: 'GET',
       headers: { 
+        'X-APIKEY': apiKey,
         'x-api-key': apiKey,
+        'Content-Type': 'application/json',
         'Accept': 'application/json',
         'User-Agent': 'Mozilla/5.0'
       },
@@ -58,17 +64,17 @@ async function handler(req, res) {
     try {
       data = JSON.parse(responseText);
     } catch (e) {
-      console.error('Response non-json dari Backend:', responseText.slice(0, 200));
+      console.error('Response non-json dari XS-Pedia:', responseText.slice(0, 200));
       return res.status(502).json({
         success: false,
-        message: `Backend mengembalikan HTTP ${response.status}`
+        message: `XS-Pedia mengembalikan HTTP ${response.status}`
       });
     }
 
     if (!response.ok || !data.success) {
       return res.status(response.status !== 200 ? response.status : 400).json({
         success: false,
-        message: data.message || `Backend mengembalikan HTTP ${response.status}`
+        message: data.message || `XS-Pedia mengembalikan HTTP ${response.status}`
       });
     }
 
@@ -77,7 +83,7 @@ async function handler(req, res) {
     const qrImageUrl = qris.qr_image || qris.qr_image_combined || qris.qr_image_raw || '';
 
     if (!transactionId || !qrImageUrl) {
-      return res.status(502).json({ success: false, message: 'Respons backend tidak berisi ID transaksi atau QR image.' });
+      return res.status(502).json({ success: false, message: 'Respons XS-Pedia tidak berisi ID transaksi atau QR image.' });
     }
 
     const totalAmount = Number(qris.total_amount || amount);
