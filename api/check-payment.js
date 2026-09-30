@@ -28,15 +28,16 @@ async function handler(req, res) {
     const id = String(Array.isArray(rawId) ? rawId[0] : (rawId || '')).trim();
     if (!id) return res.status(400).json({ success: false, message: 'ID transaksi wajib diisi.' });
 
-    // ================= DISESUAIKAN: Nembak ke /deposit/status =================
+    // ================= DOKUMEN XS-PEDIA: /h2h/deposit/status =================
     const params = new URLSearchParams({ id });
-    const targetUrl = `${baseUrl}/deposit/status?${params.toString()}`;
+    const targetUrl = `${baseUrl}/h2h/deposit/status?${params.toString()}`;
 
     const response = await fetch(targetUrl, {
       method: 'GET',
       headers: { 
+        'X-APIKEY': apiKey,
         'x-api-key': apiKey,
-        'X-APIKEY': apiKey, 
+        'Content-Type': 'application/json',
         'Accept': 'application/json', 
         'Cache-Control': 'no-cache' 
       },
