@@ -5,7 +5,7 @@ async function handler(req, res) {
 
   try {
     const apiKey = process.env.XS_PEDIA_APIKEY || process.env.XS_PEDIA_API_KEY;
-    const baseUrl = (process.env.XS_PEDIA_BASE_URL || 'https://xspedia-payment.vercel.app').replace(/\/$/, '');
+    const baseUrl = (process.env.XS_PEDIA_BASE_URL || 'https://xs-pedia.my.id').replace(/\/$/, '');
     
     if (!apiKey) {
       return res.status(500).json({ success: false, message: 'XS_PEDIA_APIKEY belum diatur di environment.' });
